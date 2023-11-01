@@ -1,0 +1,8 @@
+100
+2
+0
+4915.0
+true
+false
+false
+false
