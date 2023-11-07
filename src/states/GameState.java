@@ -286,8 +286,8 @@ public class GameState extends State{
 		action = new Action() {
 			@Override
 			public void doAction() {
-				BonusRefuerzo = new BonusRefuerzo(position, Propiedades.refuerzo, this, GameState.this);
-				BonusRefuerzo.executeAction();
+				BonusRefuerzo bonus_refuerzo = new BonusRefuerzo(position, Propiedades.refuerzo, this, GameState.this);
+				bonus_refuerzo.executeAction();
 				messages.add(new Mensaje(
 						new Vector2D(WIDTH/2, HEIGHT/2),
 						false,

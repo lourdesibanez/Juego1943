@@ -31,7 +31,7 @@ public class AvionEnemigoRojo extends AvionEnemigo {
         if (position.getX() < -width)
             position.setX(WIDTH);
         if (position.getY() < -height)
-            position.setY(HEIGHT);
+            position.setY(HEIGHT - 200);
             
         //para que vaya recto hacia la izquierda
        velocity.setX(-1); 
