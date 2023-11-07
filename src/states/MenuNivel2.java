@@ -33,7 +33,6 @@ public class MenuNivel2 extends State { //si ponemos extends MenuState
 						int puntajeActual = getScore(); // Obtiene el puntaje actual de MenuNivel2
             			Nivel2.setScore(puntajeActual); // Establece el puntaje en Nivel2
 						State.changeState(new Nivel2(gameStateScore)); //aca deberia ser new Nivel2()
-						System.out.println("Entrando al nivel 2 verdadero");
 					}
 				}
 			    );

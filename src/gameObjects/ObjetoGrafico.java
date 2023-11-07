@@ -72,11 +72,13 @@ public abstract class ObjetoGrafico{
 		if(p != null && p.isSpawning()) 
 			return;
 		
-		if (a instanceof AvionEnemigo && !a.isDead()) {
+		if ((a instanceof AvionEnemigoRojo && a.isDead()) || (a instanceof AvionEnemigoNegro && a.isDead()) || (a instanceof AvionEnemigoVerde  && a.isDead())) {
 			avionesDestruidos++;
+			System.out.println("destruidos: " + avionesDestruidos);
 		}
-		if (b instanceof AvionEnemigo && !b.isDead()) {
+		if ((b instanceof AvionEnemigoRojo && b.isDead()) || (b instanceof AvionEnemigoNegro && b.isDead()) || (b instanceof AvionEnemigoVerde  && b.isDead())) {
 			avionesDestruidos++;
+			System.out.println("destruidos b: " + avionesDestruidos);
 		}
 		if(a instanceof MunicionP38 && b instanceof Ayako){
 			((Ayako) b).incrementarColisiones();

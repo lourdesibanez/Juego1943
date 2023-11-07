@@ -25,10 +25,6 @@ public class GameState extends State{
 	public static final double PLAYER_MAX_VEL = 7.0;
 	public static final long GAME_OVER_TIME = 3000;
 
-	// Propiedades Barco Enemigo
-	public static final int BARCO_MAX_VEL = 1;	
-	public static final long BARCO_SPAWN_RATE = 10000;
-
 
 	// Propiedades del enemigo
 	public static final double ENEMIGO_INIT_VEL = 2.0;
@@ -36,8 +32,6 @@ public class GameState extends State{
 	public static final double ENEMIGO_MAX_VEL = 6.0;
     public static final int ENEMIGO_WIDTH = 50;
     public static final int ENEMIGO_HEIGHT = 50;
-    public static final long ENEMIGO_SPAWN_INTERVAL = 100;
-    public static final int ENEMIGO_SPAWN_COUNT = 10;
 
 	public static final Vector2D PLAYER_START_POSITION = new Vector2D(WIDTH/2 - Propiedades.player.getWidth()/2, HEIGHT/2 - Propiedades.player.getHeight()/2);
 	
@@ -198,7 +192,7 @@ public class GameState extends State{
 		movingObjects.add(new Ayako(
 				new Vector2D(x, y),
 				new Vector2D(),
-				BARCO_MAX_VEL,
+				1,
 				Propiedades.ayako,
 				path,
 				this
@@ -482,6 +476,15 @@ public class GameState extends State{
 			spawnAyako();
 			ayakoSpawned = true;
 		}
+		/* 
+		powerUpSpawner += dt;
+        // Verificar si ha pasado el tiempo necesario para que aparezca Ayako
+        if (!ayakoSpawned && powerUpSpawner >= 60000) {
+            spawnAyako();
+            ayakoSpawned = true;
+        }
+		*/
+
 		for(int i = 0; i < movingObjects.size(); i++)
 			if(movingObjects.get(i) instanceof AvionEnemigo)
 				return;

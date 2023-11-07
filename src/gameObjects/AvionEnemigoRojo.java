@@ -44,7 +44,6 @@ public class AvionEnemigoRojo extends AvionEnemigo {
         gameState.incrementarRojosDestruidos();
         if(gameState.getRojosDestruidos() == 5){
             gameState.spawnItem();
-            System.out.println("Destruidos los 5 aviones rojos y lanzado y power up");
             gameState.reiniciarRojosDestruidos();
         }
     }

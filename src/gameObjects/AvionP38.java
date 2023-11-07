@@ -101,14 +101,6 @@ public class AvionP38 extends ObjetoGrafico{
 			}
 		}
 		if (KeyBoard.SHOOT &&  fireRate > fireSpeed && !spawning) {
-			gameState.getMovingObjects().add(0,new MunicionP38( //ver desde donde sale el disparo
-							getCenter().add(heading.scale(width)),//posicion del laser, verificar
-							heading,// velocidad
-							LASER_VEL,//velocidad maxima
-							angle,//mismo angulo de rotacion que el jugador
-							Propiedades.laser2,
-							gameState
-						));
 			if(ninja.isNinjaOn()) {
 				Vector2D leftGun = getCenter();
 				Vector2D rightGun = getCenter();
@@ -123,8 +115,8 @@ public class AvionP38 extends ObjetoGrafico{
 				Municion r = new MunicionP38(rightGun, heading, LASER_VEL, angle, Propiedades.laser2, gameState);
 				gameState.getMovingObjects().add(0, l);
 				gameState.getMovingObjects().add(0, r);
-			} 
-			if (laser.isLaserOn()) {
+			} else {
+				if (laser.isLaserOn()) {
 					gameState.getMovingObjects().add(0, new Laser(
 						getCenter().add(heading.scale(width)),
 						heading,
@@ -133,8 +125,8 @@ public class AvionP38 extends ObjetoGrafico{
 						Propiedades.laser, // Usar la nueva imagen del láser fuerte si está activada
 						gameState
 					));
-			} 
-				if (escopeta.isEscopetaOn()) {
+				} else {
+					if (escopeta.isEscopetaOn()) {
 						for (int i = 0; i < 4; i++) {
 							// Genera un ángulo aleatorio en radianes
 							double currentAngle = Math.random() * 2 * Math.PI;
@@ -147,31 +139,39 @@ public class AvionP38 extends ObjetoGrafico{
 							Vector2D startPosition = getCenter().add(direccion.scale(width + positionVariation));
 
 							// Crea un objeto de MunicionEnemigos con la dirección y posición calculadas
-							gameState.getMovingObjects().add(0, new Escopeta(
-								startPosition, 
-								direccion, 
-								LASER_VEL, 
-								currentAngle + Math.PI / 2, 
-								Propiedades.municion_ayako, 
-								gameState));
+							Escopeta escopeta = new Escopeta(startPosition, direccion, LASER_VEL, currentAngle + Math.PI / 2, Propiedades.municion_ayako, gameState);
+							gameState.getMovingObjects().add(0, escopeta);
 						}
-				} 
-				if (ametralladora.isAmetralladoraOn()){
-							for (int i = 0; i < 3; i++) {
+					} else {
+						if (ametralladora.isAmetralladoraOn()){
+							for (int i = 0; i < 4; i++) {
+								Vector2D bulletOffset = heading.scale(width * 2.0 * i); // Ajusta el factor 1.2 según la separación deseada
+        						Vector2D startPosition = getCenter().add(bulletOffset);
 								gameState.getMovingObjects().add(0, new Ametralladora(
-								getCenter().add(heading.scale(width)),
+								startPosition,
 								heading,
-								LASER_VEL,
+								10.0,
 								angle,
 								Propiedades.municion_ayako, // Usar la nueva imagen del láser fuerte si está activada
 								gameState
 								));
 							}
-				} 
+						} else {
+						gameState.getMovingObjects().add(0,new MunicionP38( //ver desde donde sale el disparo
+							getCenter().add(heading.scale(width)),//posicion del laser, verificar
+							heading,// velocidad
+							LASER_VEL,//velocidad maxima
+							angle,//mismo angulo de rotacion que el jugador
+							Propiedades.laser2,
+							gameState
+						));
+						}
+					}
+				}
+			}
 			fireRate = 0;
 			shoot.play();
 		}
-		
 
 		if(shoot.getFramePosition() > 8500) {
 			shoot.stop();
@@ -228,7 +228,7 @@ public class AvionP38 extends ObjetoGrafico{
 	
 	@Override
 	public void Destroy() {
-		if (!escopeta.isEscopetaOn() || !ametralladora.isAmetralladoraOn()) { 
+		if (!escopeta.isEscopetaOn() && !ametralladora.isAmetralladoraOn()) { 
 			spawning = true;
 			gameState.playExplosion(position);
 			spawnTime = 0;

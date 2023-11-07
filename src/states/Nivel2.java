@@ -116,30 +116,35 @@ public class Nivel2 extends GameState{
 			nivelIniciado = true;
 		}
 		double x, y;
-		for (int i = 0; i < enemigos; i++) {
-			if (i % 3 == 0) {
-				x = (int) (Math.random() * WIDTH);
-				y = -ENEMIGO_HEIGHT;
-				movingObjects.add(new BarcoChico(
-						new Vector2D(x, y),
-						new Vector2D(0, 1),
-						ENEMIGO_INIT_VEL * Math.random() + 1,
-						Propiedades.barco_enemigo,
-						this
-				));
-			} else if (i % 3 == 1) {
-				x = Math.random() * (WIDTH / 2 - ENEMIGO_WIDTH);
-				y = Math.random() * HEIGHT;
-				movingObjects.add(new BarcoChico(
-						new Vector2D(x, y),
-						new Vector2D(0, 1),
-						ENEMIGO_INIT_VEL * Math.random() + 1,
-						Propiedades.barco_enemigo,
-						this
-				));
-			}
-		}
-		enemigos++;
+    double direction = 0.0; // Variable para alternar direcciones
+    
+    for (int i = 0; i < enemigos; i++) {
+        double randomDirection = direction; // Usa la dirección actual
+        direction += Math.PI / 4; // Incrementa la dirección para el siguiente barco
+        
+        if (i % 3 == 0) {
+            x = (int) (Math.random() * WIDTH);
+            y = -ENEMIGO_HEIGHT;
+            movingObjects.add(new BarcoChico(
+                new Vector2D(x, y),
+                new Vector2D(Math.cos(randomDirection), Math.sin(randomDirection)), // Dirección asignada
+                ENEMIGO_INIT_VEL * Math.random() + 1,
+                Propiedades.barco_enemigo,
+                this
+            ));
+        } else if (i % 3 == 1) {
+            x = Math.random() * (WIDTH / 2 - ENEMIGO_WIDTH);
+            y = Math.random() * HEIGHT;
+            movingObjects.add(new BarcoChico(
+                new Vector2D(x, y),
+                new Vector2D(Math.cos(randomDirection), Math.sin(randomDirection)), // Dirección asignada
+                ENEMIGO_INIT_VEL * Math.random() + 1,
+                Propiedades.barco_enemigo,
+                this
+            ));
+        }
+    }
+    enemigos++;
 	}
 	
 	private void spawnYamato(){
