@@ -392,11 +392,6 @@ public class Nivel2 extends GameState{
 	public void addScore(int value, Vector2D position) {	
 		Color c = Color.WHITE;
 		String text = "+" + value + " puntos";
-		/*if(player.isSuperShellOn()) {
-			c = Color.RED;
-			value = value * 2;
-			text = "+" + value + " puntos" + " (X2)";
-		}*/
 		score += value;
 		messages.add(new Mensaje(position, true, text, c, true, Propiedades.fontMed));
 	}

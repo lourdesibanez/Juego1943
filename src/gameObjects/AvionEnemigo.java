@@ -67,6 +67,8 @@ public abstract class AvionEnemigo extends ObjetoGrafico{
 			position.setX(WIDTH);
 		if(position.getY() < -height)
 			position.setY(HEIGHT);
+
+		collidesWith();
 	}
 
 	protected boolean canShoot(float dt) {

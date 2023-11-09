@@ -16,9 +16,6 @@ public class SuperShell extends MunicionP38{
         superShellTime = 0;
 	}
 
-    //hacemos una clase Laser para que cuando el jugador la utilice podamos identificarla para asignarle mas puntaje
-    //cada vez que el jugador dispare con este laser le otorgamos 60 pts en objetografico
-
     public boolean isSuperShellOn() {
         return superShellOn;
     }
@@ -39,9 +36,8 @@ public class SuperShell extends MunicionP38{
     @Override
 	public void update(float dt) {
 		super.update(dt);
-        if(!superShellOn)
+        if(superShellOn)
             superShellTime += dt;
-
             if(superShellTime > 12000)
 			    desactivarSuperShell();
 	}

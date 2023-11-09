@@ -102,11 +102,6 @@ public class GameState extends State{
 	public void addScore(int value, Vector2D position) {	
 		Color c = Color.WHITE;
 		String text = "+" + value + " puntos";
-		/*if(player.isSuperShellOn()) {
-			c = Color.RED;
-			value = value * 2;
-			text = "+" + value + " puntos" + " (X2)";
-		}*/
 		score += value;
 		messages.add(new Mensaje(position, true, text, c, true, Propiedades.fontMed));
 	}
@@ -153,14 +148,13 @@ public class GameState extends State{
 				));
 			} else {
 				// Aviones enemigos rojos en formación recta
-				int cant_rojos = 5;
-				double spaceBetweenPlanes = (double) WIDTH / (cant_rojos+ 10);
+				double spaceBetweenPlanes = (double) WIDTH / (5 + 10);
 				
 				int minY = 10;  // Define la distancia mínima desde el borde inferior
 				int maxY = Nivel2.HEIGHT - minY;
 				
 				int p = minY + (int)(Math.random() * (maxY - minY)); // Altura aleatoria en la pantalla
-				for (int j = 0; j < cant_rojos; j++) {
+				for (int j = 0; j < 5; j++) {
     				x = WIDTH - (j + 1) * spaceBetweenPlanes - ENEMIGO_WIDTH;
     				movingObjects.add(new AvionEnemigoRojo(
             		new Vector2D(x, p),
@@ -450,18 +444,8 @@ public class GameState extends State{
 			backgroundMusic.stop();
 			State.changeState(new MenuState());
 		}
-		/* 
-		if(fin_nivel == true){
-			guardarRanking();
-		}
-*/
-		/* 
-		if(fin_nivel==true && ayako.isDestroy()){
-			backgroundMusic.stop();
-			State.changeState(new MenuNivel2());
-		}
-		*/
-		if (!avionesRefuerzo.isEmpty() && getPlayer().isDestroy()) {
+		
+		if (!avionesRefuerzo.isEmpty() && player.isDestroy()) {
 			for (AvionRefuerzo avionRefuerzo : avionesRefuerzo) {
 				avionRefuerzo.Destroy(); // Asumiendo que tienes un método destroy() en la clase AvionRefuerzo
 			}
@@ -476,14 +460,6 @@ public class GameState extends State{
 			spawnAyako();
 			ayakoSpawned = true;
 		}
-		/* 
-		powerUpSpawner += dt;
-        // Verificar si ha pasado el tiempo necesario para que aparezca Ayako
-        if (!ayakoSpawned && powerUpSpawner >= 60000) {
-            spawnAyako();
-            ayakoSpawned = true;
-        }
-		*/
 
 		for(int i = 0; i < movingObjects.size(); i++)
 			if(movingObjects.get(i) instanceof AvionEnemigo)
@@ -616,14 +592,6 @@ public class GameState extends State{
 
 	public boolean subtractLife(Vector2D position) {
 		lives --;
-		/* 
-		if (!avionesRefuerzo.isEmpty()) {
-			for (AvionRefuerzo avionRefuerzo : avionesRefuerzo) {
-				avionRefuerzo.Destroy(); // Asumiendo que tienes un método destroy() en la clase AvionRefuerzo
-			}
-			avionesRefuerzo.clear(); // Limpia la lista de aviones de refuerzo
-		}
-		*/
 		Mensaje lifeLostMesg = new Mensaje(
 				position,
 				false,

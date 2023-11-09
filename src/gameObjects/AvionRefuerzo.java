@@ -63,4 +63,13 @@ public class AvionRefuerzo extends AvionP38{
 	public void draw(Graphics g) {
         super.draw(g);
     }
+
+    public int getWidth() {
+        return texture.getWidth();
+    }
+    public int getHeight() {
+        return texture.getHeight();
+    }
+    
+    
 }

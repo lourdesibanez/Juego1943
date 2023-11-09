@@ -30,6 +30,7 @@ public class BonusRefuerzo extends PowerUp{
         refuerzoDerecho.activarRefuerzo();
         refuerzoIzquierdo.activarRefuerzo();
         
+        
         // Agrega las instancias de AvionRefuerzo a la lista de objetos móviles en gameState 
         gameState.agregarAvionRefuerzo(refuerzoIzquierdo); 
         gameState.agregarAvionRefuerzo(refuerzoDerecho); 

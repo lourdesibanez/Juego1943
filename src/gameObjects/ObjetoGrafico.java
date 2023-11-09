@@ -26,8 +26,8 @@ public abstract class ObjetoGrafico{
 	
 	protected boolean Dead;
 
-	public static int avionesDestruidos;
 	public static int barcosDestruidos;
+	public static int avionesDestruidos = 0;
 	protected int rojosDestruidos;
 
 	public ObjetoGrafico(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState) {
@@ -41,7 +41,6 @@ public abstract class ObjetoGrafico{
 		angle = 0;
 		explosion = new Sound(Propiedades.explosion);
 		Dead = false;
-		avionesDestruidos = 0;
 		barcosDestruidos = 0;
 		rojosDestruidos = 0;
 	}
@@ -71,15 +70,7 @@ public abstract class ObjetoGrafico{
 		
 		if(p != null && p.isSpawning()) 
 			return;
-		
-		if ((a instanceof AvionEnemigoRojo && a.isDead()) || (a instanceof AvionEnemigoNegro && a.isDead()) || (a instanceof AvionEnemigoVerde  && a.isDead())) {
-			avionesDestruidos++;
-			System.out.println("destruidos: " + avionesDestruidos);
-		}
-		if ((b instanceof AvionEnemigoRojo && b.isDead()) || (b instanceof AvionEnemigoNegro && b.isDead()) || (b instanceof AvionEnemigoVerde  && b.isDead())) {
-			avionesDestruidos++;
-			System.out.println("destruidos b: " + avionesDestruidos);
-		}
+
 		if(a instanceof MunicionP38 && b instanceof Ayako){
 			((Ayako) b).incrementarColisiones();
 		}
@@ -112,9 +103,11 @@ public abstract class ObjetoGrafico{
 			
 		if(a instanceof MunicionEnemigos && b instanceof Yamato)
 			return;
+
 		
 		if(a instanceof MunicionP38 && b instanceof AvionEnemigoVerde || a instanceof MunicionP38 && b instanceof AvionEnemigoNegro || a instanceof MunicionP38 && b instanceof AvionEnemigoRojo){
 			gameState.addScore(20, getPosition());
+			++avionesDestruidos;
 		}
 		if(a instanceof Laser && b instanceof AvionEnemigoVerde || a instanceof Laser && b instanceof AvionEnemigoNegro || a instanceof Laser && b instanceof AvionEnemigoRojo || a instanceof Laser && b instanceof Ayako){
 			gameState.addScore(60, getPosition());
@@ -154,6 +147,7 @@ public abstract class ObjetoGrafico{
 		}
 
 	}
+
 	
 	protected void Destroy(){
 		Dead = true;
