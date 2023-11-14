@@ -13,7 +13,6 @@ import states.Nivel2;
 public abstract class BarcoEnemigo extends ObjetoGrafico {
 
     // Atributos comunes a todas las subclases de Barco pero cada subclase puede modificarlos a su necesidad
-
     public static final int WIDTH = 600; // Ancho de la ventana
     public static final int HEIGHT = 700; // Largo de la ventana
     public static final int NODE_RADIUS = 160;
@@ -26,7 +25,6 @@ public abstract class BarcoEnemigo extends ObjetoGrafico {
 
     private long fireRate;
 	protected Sound shoot;
-
     protected Nivel2 nivel2;
 
     public BarcoEnemigo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, Nivel2 nivel2) {
@@ -38,10 +36,10 @@ public abstract class BarcoEnemigo extends ObjetoGrafico {
     }
 
     public void update(float dt){
-        if(velocity.getMagnitude() >= this.maxVel) {
-			Vector2D reversedVelocity = new Vector2D(-velocity.getX(), -velocity.getY());
-			velocity = velocity.add(reversedVelocity.normalize().scale(0.09f));
-		}
+        if (velocity.getMagnitude() >= this.maxVel) {
+            Vector2D reversedVelocity = new Vector2D(-velocity.getX(), -velocity.getY());
+            velocity = velocity.add(reversedVelocity.normalize().scale(0.09f));
+        }
 		//disparo
 		if (fireRate > BARCO_FIRE_RATE) {
 			Vector2D toPlayer = gameState.getPlayer().getCenter().subtract(getCenter());
@@ -69,7 +67,9 @@ public abstract class BarcoEnemigo extends ObjetoGrafico {
         angle += 0.05;
     	// Incrementar el tiempo entre disparos
     	fireRate += dt;
-		velocity = velocity.limit(BARCO_MAX_VEL);
+        // Establecer la velocidad solo una vez fuera del bucle de actualización
+        double scaledVerticalSpeed = BARCO_MAX_VEL * 0.1; // Puedes ajustar el factor 0.5 según tu necesidad
+        velocity = new Vector2D(0, scaledVerticalSpeed);
 		position = position.add(velocity);
 		if(position.getX() > WIDTH - 50)
 			position.setX(WIDTH - 50);

@@ -1,41 +1,17 @@
 package states;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
-
 import javax.xml.stream.XMLStreamException;
-
 import Menu.Jugador;
-import gameObjects.BonusAuto;
-import gameObjects.BonusEscopeta;
-import gameObjects.BonusLaser;
-import gameObjects.Mensaje;
-import gameObjects.BonusNinja;
-import gameObjects.ObjetoGrafico;
-import gameObjects.BonusPow;
-import gameObjects.PowerUp;
+import gameObjects.*;
 import gameObjects.PowerUp.PowerUpTypes;
-import gameObjects.BonusSuperShell;
-import gameObjects.Tsunami;
-import gameObjects.Yamato;
-import gameObjects.AvionP38;
-import gameObjects.BarcoChico;
-import gameObjects.BonusAmetralladora;
-import graphics.Animation;
-import graphics.Propiedades;
-import graphics.Sound;
+import graphics.*;
 import input.KeyBoard;
 import io.Ranking;
 import math.Vector2D;
 import ui.Action;
-
 
 public class Nivel2 extends GameState{
 

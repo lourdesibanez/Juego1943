@@ -5,9 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.stream.XMLStreamException;
-
 import Menu.Jugador;
 import gameObjects.*;
 import gameObjects.PowerUp.PowerUpTypes;
