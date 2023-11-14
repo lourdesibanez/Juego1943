@@ -347,8 +347,6 @@ public class GameState extends State{
 				action,
 				this
 				));
-		
-		
 	}
 
 	public void spawnItem() {
@@ -372,7 +370,6 @@ public class GameState extends State{
 							));
 				}
 			};
-	
 		// Agrega el Item a la lista de objetos móviles para que se actualice y dibuje
 		this.movingObjects.add(new PowerUp(
 				position,
@@ -456,7 +453,7 @@ public class GameState extends State{
 			spawnPowerUp();
 			powerUpSpawner = 0;
 		}
-		if (ObjetoGrafico.avionesDestruidos >= 30 && ayakoSpawned == false) {
+		if (ObjetoGrafico.avionesDestruidos >= 10 && ayakoSpawned == false) {
 			spawnAyako();
 			ayakoSpawned = true;
 		}

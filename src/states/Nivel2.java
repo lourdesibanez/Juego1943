@@ -14,6 +14,8 @@ import javax.xml.stream.XMLStreamException;
 
 import Menu.Jugador;
 import gameObjects.BonusAuto;
+import gameObjects.BonusEscopeta;
+import gameObjects.BonusLaser;
 import gameObjects.Mensaje;
 import gameObjects.BonusNinja;
 import gameObjects.ObjetoGrafico;
@@ -25,6 +27,7 @@ import gameObjects.Tsunami;
 import gameObjects.Yamato;
 import gameObjects.AvionP38;
 import gameObjects.BarcoChico;
+import gameObjects.BonusAmetralladora;
 import graphics.Animation;
 import graphics.Propiedades;
 import graphics.Sound;
@@ -233,7 +236,7 @@ public class Nivel2 extends GameState{
 		}
 		*/
 		
-		if(powerUpSpawner > 30000) {
+		if(powerUpSpawner > 2000) {
 			spawnPowerUp();
 			powerUpSpawner = 0;
 		}
@@ -327,6 +330,57 @@ public class Nivel2 extends GameState{
 			public void doAction() {
 				BonusNinja ninja = new BonusNinja(position, Propiedades.ninja, this, Nivel2.this);
 				ninja.executeAction();
+				messages.add(new Mensaje(
+						new Vector2D(WIDTH/2, HEIGHT/2),
+						false,
+						text,
+						Color.BLACK,
+						true,
+						Propiedades.fontMed
+						));
+			}
+		};
+		break;
+		case LASER:
+		action = new Action() {
+			@Override
+			public void doAction() {
+				BonusLaser laser = new BonusLaser(position, Propiedades.laser, this, Nivel2.this);
+				laser.executeAction();
+				messages.add(new Mensaje(
+						new Vector2D(WIDTH/2, HEIGHT/2),
+						false,
+						text,
+						Color.BLACK,
+						true,
+						Propiedades.fontMed
+						));
+			}
+		};
+		break;
+		case ESCOPETA:
+		action = new Action() {
+			@Override
+			public void doAction() {
+				BonusEscopeta escopeta = new BonusEscopeta(position, Propiedades.escopeta, this, Nivel2.this);
+				escopeta.executeAction();
+				messages.add(new Mensaje(
+						new Vector2D(WIDTH/2, HEIGHT/2),
+						false,
+						text,
+						Color.BLACK,
+						true,
+						Propiedades.fontMed
+						));
+			}
+		};
+		break; 
+		case AMETRALLADORA:
+		action = new Action() {
+			@Override
+			public void doAction() {
+				BonusAmetralladora bonusAmetralladora = new BonusAmetralladora(position, Propiedades.ametralladora, this, Nivel2.this);
+				bonusAmetralladora.executeAction();
 				messages.add(new Mensaje(
 						new Vector2D(WIDTH/2, HEIGHT/2),
 						false,

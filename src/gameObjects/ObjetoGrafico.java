@@ -26,9 +26,9 @@ public abstract class ObjetoGrafico{
 	
 	protected boolean Dead;
 
-	public static int barcosDestruidos;
+	public static int barcosDestruidos = 0;
 	public static int avionesDestruidos = 0;
-	protected int rojosDestruidos;
+	protected int rojosDestruidos = 0;
 
 	public ObjetoGrafico(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState) {
 		this.velocity = velocity;
@@ -41,8 +41,6 @@ public abstract class ObjetoGrafico{
 		angle = 0;
 		explosion = new Sound(Propiedades.explosion);
 		Dead = false;
-		barcosDestruidos = 0;
-		rojosDestruidos = 0;
 	}
 	
 	/* se encarga de detectar colisiones entre el objeto actual y otros objetos en movimiento en el juego, y luego llama al método objectCollision
@@ -75,12 +73,6 @@ public abstract class ObjetoGrafico{
 			((Ayako) b).incrementarColisiones();
 		}
 		
-		if (a instanceof BarcoChico && !a.isDead()) {
-			barcosDestruidos++;
-		}
-		if (b instanceof BarcoChico && !b.isDead()) {
-			barcosDestruidos++;
-		}
 		if (a instanceof AvionEnemigoRojo && a.isDead() || b instanceof AvionEnemigoRojo && b.isDead()) {
 			rojosDestruidos++;
 			//a.Destroy();
@@ -114,10 +106,12 @@ public abstract class ObjetoGrafico{
 		}
 		 
 		if(a instanceof MunicionP38 && b instanceof BarcoChico || a instanceof MunicionP38 && b instanceof Yamato){
-			gameState.addScore(50, getPosition());
+			gameState.addScore(30, getPosition());
+			++barcosDestruidos;
 		}
 		if(a instanceof Laser && b instanceof BarcoChico || a instanceof Laser && b instanceof Yamato){
 			gameState.addScore(60, getPosition());
+			++barcosDestruidos;
 		}
 
 		if(a instanceof MunicionP38 && b instanceof Item || b instanceof MunicionP38 && a instanceof Item)
