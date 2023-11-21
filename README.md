@@ -1,57 +1,59 @@
-# Plataforma de Software para Videojuegos
-Bienvenido a la Plataforma de Software para Videojuegos, un proyecto que tiene como objetivo permitir la ejecución de diversos videojuegos y proporcionar elementos básicos comunes para el desarrollo de nuevos juegos.
+# Video Game Software Platform
 
-## Juego 1943 - Batalla de Midway
-En este proyecto, se desarrolla el videojuego "1943: Batalla de Midway". En este juego, el jugador controla un avión de guerra de la Fuerza Aérea de los Estados Unidos. La misión del jugador es derrotar a los enemigos, que son controlados por la computadora y pertenecen al Imperio del Japón.
+Welcome to the Video Game Software Platform, a project aimed at enabling the execution of various video games and providing common basic elements for the development of new games.
 
-## Objetivos del Juego
-- Destruir a los aviones de la fuerza aérea enemiga.
-- Avanzar a través de diferentes niveles del juego.
-- Destruir el buque insignia de la flota enemiga, Yamato.
+## Game: 1943 - Battle of Midway
 
-## Desarrollo de las Misiones
-Cada misión consta de dos fases: una de aproximación y otra de ataque al objetivo. Para completar una misión y avanzar, el jugador debe causar daños al "Jefe Final" en un rango del 70% al 100%. Un porcentaje menor obliga a repetir la misión.
+In this project, the video game "1943: Battle of Midway" is developed. In this game, the player controls a warplane from the United States Air Force. The player's mission is to defeat enemies, controlled by the computer, belonging to the Empire of Japan.
 
-## Energía del Avión
-El avión del jugador pierde energía cuando:
-- Es impactado por las municiones enemigas.
-- Choca con otro avión.
-- Se agota el tiempo de la misión.
-- Se utilizan ataques especiales (rayos y tsunamis).
+## Game Objectives
+- Destroy enemy air force planes.
+- Advance through different levels of the game.
+- Destroy the flagship of the enemy fleet, Yamato.
 
-## Power-Ups y Armas
-El jugador puede mejorar su avión al recoger diferentes tipos de bonus, ya sean power-ups o armas de efecto y duración limitada. Al recoger el mismo tipo de bonus dos veces, se aumenta su poder y el tiempo de duración.
+## Mission Development
+Each mission consists of two phases: an approach phase and an attack on the target. To complete a mission and progress, the player must cause damage to the "Final Boss" in a range of 70% to 100%. A lower percentage requires repeating the mission.
 
-## Controles del Cazabombardero
-El cazabombardero se controla con los siguientes controles:
-- Flechas de cursor: movimiento en 8 direcciones.
-- Tecla X: disparo (varía según el arma).
-- Tecla Z: ataques especiales (Relámpago y Tsunami).
-- Barra Espaciadora: pausa (todas las teclas son reconfigurables).
+## Aircraft Energy
+The player's plane loses energy when:
+- Hit by enemy ammunition.
+- Collides with another plane.
+- Mission time expires.
+- Special attacks (lightning and tsunamis) are used.
 
-## Ataques Especiales
-El uso de ataques especiales disminuye la carga de energía. Los ataques especiales disponibles son:
-- Relámpago: destruye todos los aviones pequeños en la fase de combate aéreo.
-- Tsunami: detiene el desplazamiento vertical de la pantalla y daña a los buques en la fase de combate de superficie.
+## Power-Ups and Weapons
+The player can upgrade their plane by collecting different types of bonuses, whether power-ups or weapons with limited effect and duration. Collecting the same type of bonus twice increases its power and duration.
 
-## Enemigos
-Los enemigos atacan en formaciones de aviones y barcos de diferentes tamaños.
+## Bomber Controls
+The bomber is controlled with the following controls:
+- Arrow keys: movement in 8 directions.
+- Key X: shoot (varies according to the weapon).
+- Key Z: special attacks (Lightning and Tsunami).
+- Spacebar: pause (all keys are configurable).
 
-## Jefes Finales
-Cada misión tiene un "Jefe Final" objetivo a derrotar. Algunos de los jefes finales incluyen Tone, Kaga, Ayako y el buque insignia Yamato.
+## Special Attacks
+The use of special attacks decreases the energy level. Available special attacks include:
+- Lightning: destroys all small planes in the aerial combat phase.
+- Tsunami: stops the vertical scrolling of the screen and damages ships in the surface combat phase.
 
-## Configuración
-La plataforma incluye una pantalla de configuración con opciones personalizables, como:
-- Jugar en ventana o pantalla completa.
-- Activar/desactivar el sonido.
-- Selección del avión.
-- Definición de teclas.
-- Selección de pista musical.
-- Botón "RESET" para restaurar los valores por defecto.
+## Enemies
+Enemies attack in formations of planes and ships of different sizes.
+
+## Final Bosses
+Each mission has a designated "Final Boss" to defeat. Some of the final bosses include Tone, Kaga, Ayako, and the flagship Yamato.
+
+## Configuration
+The platform includes a configuration screen with customizable options, such as:
+- Play in windowed or fullscreen mode.
+- Enable/disable sound.
+- Aircraft selection.
+- Key definition.
+- Musical track selection.
+- "RESET" button to restore default values.
 
 ## Ranking
-El juego guarda los puntajes obtenidos y muestra los 10 mejores en una interfaz antes de comenzar y al finalizar la partida. Cada entrada en el ranking contiene el puntaje, el nombre del jugador y la fecha.
+The game saves obtained scores and displays the top 10 on an interface before starting and after completing the game. Each entry in the ranking contains the score, player name, and date.
 
-¡Diviértete jugando y desarrollando nuevos juegos en nuestra plataforma de software para videojuegos!
+Enjoy playing and developing new games on our video game software platform!
 
 
