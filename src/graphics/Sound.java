@@ -1,5 +1,6 @@
 package graphics;
 
+import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
@@ -34,5 +35,9 @@ public class Sound {
 	
 	public void changeVolume(float value) {
 		volume.setValue(value);
+	}
+
+	public void turnOffVolume(){
+        volume.setValue(volume.getMinimum());
 	}
 }

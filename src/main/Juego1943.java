@@ -80,16 +80,22 @@ public class Juego1943 extends Juego implements Runnable {
 
             // Cierra el archivo
             archivoEntrada.close();
-
+           System.out.println("CONFIG: " + propiedades);
             // Obtén los valores cargados del archivo .properties
             boolean pantallaCompleta = Boolean.parseBoolean(propiedades.getProperty("pantallaCompleta"));
             boolean sonidoActivado = Boolean.parseBoolean(propiedades.getProperty("sonidoActivado"));
             String avionSeleccionado = propiedades.getProperty("avionSeleccionado");
             int volumen = Integer.parseInt(propiedades.getProperty("volumen"));
             String pistaMusicalSeleccionada = propiedades.getProperty("pistaMusicalSeleccionada");
+            int pause = Integer.parseInt(propiedades.getProperty("teclaPausa"));
+            int shoot = Integer.parseInt(propiedades.getProperty("teclaDisparo"));
+            int ataque_especial = Integer.parseInt(propiedades.getProperty("teclaAtaqueEspecial"));
+
 
             this.setPantallaCompleta(pantallaCompleta);
             //this.setSonidoActivado(sonidoActivado);
+            keyBoard.cargar_teclas(pause, shoot, ataque_especial);
+           // GameState.cargar_config();
 
             /*
             juego1943.setAvionSeleccionado(avionSeleccionado);

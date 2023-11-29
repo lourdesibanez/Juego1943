@@ -1,15 +1,44 @@
 package states;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.stream.XMLStreamException;
+
 import Menu.Jugador;
-import gameObjects.*;
+import gameObjects.AvionEnemigo;
+import gameObjects.AvionEnemigoNegro;
+import gameObjects.AvionEnemigoRojo;
+import gameObjects.AvionEnemigoVerde;
+import gameObjects.AvionP38;
+import gameObjects.AvionRefuerzo;
+import gameObjects.Ayako;
+import gameObjects.BonusAmetralladora;
+import gameObjects.BonusAuto;
+import gameObjects.BonusEscopeta;
+import gameObjects.BonusLaser;
+import gameObjects.BonusNinja;
+import gameObjects.BonusPow;
+import gameObjects.BonusRefuerzo;
+import gameObjects.BonusSuperShell;
+import gameObjects.Item;
+import gameObjects.Mensaje;
+import gameObjects.ObjetoGrafico;
+import gameObjects.PowerUp;
 import gameObjects.PowerUp.PowerUpTypes;
-import graphics.*;
+import gameObjects.Relampago;
+import graphics.Animation;
+import graphics.Propiedades;
+import graphics.Sound;
 import input.KeyBoard;
 import io.Ranking;
 import math.Vector2D;
@@ -74,6 +103,8 @@ public class GameState extends State{
 	
 	protected int backgroundY = 0;
 	protected int backgroundSpeed = 1;
+
+	private static boolean sonido_activado = true;
 	
 	public GameState(){
 		//this se refiere a esta clase
@@ -95,6 +126,16 @@ public class GameState extends State{
 		score = 0;
 		avionesRefuerzo = new ArrayList<>();
 		relampago = new Relampago(Propiedades.relampago, this);
+	}
+
+	public static void cargar_config(){
+		System.out.println("OKKK");
+		//backgroundMusic.turnOffVolume();
+		/*sonido_activado = sonido_on;
+		System.out.println("sonido activado: "+sonido_on);
+		if (sonido_activado){
+			backgroundMusic.turnOffVolume();
+		}*/
 	}
 	
 	public void addScore(int value, Vector2D position) {	

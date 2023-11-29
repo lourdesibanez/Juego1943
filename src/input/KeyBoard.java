@@ -9,7 +9,7 @@ public class KeyBoard implements KeyListener{
 	
 	public static boolean UP, LEFT, RIGHT, DOWN, SHOOT, ATAQUE_ESPECIAL;
 	public boolean PAUSE, PAUSE_KEY_PRESSED = false;
-	private static int spacePressCount = 0;
+	private static int spacePressCount = 0, key_pause = KeyEvent.VK_SPACE, key_shoot = KeyEvent.VK_X, key_ataque_especial = KeyEvent.VK_Z;
 
 	public KeyBoard()
 	{
@@ -21,6 +21,13 @@ public class KeyBoard implements KeyListener{
 		ATAQUE_ESPECIAL = false;
 		PAUSE = false;
 	}
+
+	public void cargar_teclas(int pause, int shoot, int ataque_especial) {
+		System.out.println("PROBANDO pause: "+pause+" shoot: "+shoot+"especial: "+ataque_especial);
+		key_pause = pause;
+		key_shoot = shoot;
+		key_ataque_especial = ataque_especial;
+	}
 	
 	public void update()
 	{
@@ -28,8 +35,10 @@ public class KeyBoard implements KeyListener{
 		DOWN = keys[KeyEvent.VK_DOWN];
 		LEFT = keys[KeyEvent.VK_LEFT];
 		RIGHT = keys[KeyEvent.VK_RIGHT];
-		SHOOT = keys[KeyEvent.VK_X];// aca digo que letra oprimir
-		ATAQUE_ESPECIAL = keys[KeyEvent.VK_Z];
+		SHOOT = keys[key_shoot];// aca digo que letra oprimir
+		ATAQUE_ESPECIAL = keys[key_ataque_especial];
+		/*SHOOT = keys[KeyEvent.VK_X];// aca digo que letra oprimir
+		ATAQUE_ESPECIAL = keys[KeyEvent.VK_Z];*/
 		PAUSE = !PAUSE_KEY_PRESSED;
 	}
 
@@ -40,7 +49,7 @@ public class KeyBoard implements KeyListener{
 	@Override//apretas tecla y se almacena en e de tipo keyEvent
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = true; 
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+		if (e.getKeyCode() == key_pause) {
 			spacePressCount++;
             PAUSE_KEY_PRESSED = !PAUSE_KEY_PRESSED;
         }
