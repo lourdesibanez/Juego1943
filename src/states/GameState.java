@@ -1,44 +1,17 @@
 package states;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.stream.XMLStreamException;
 
 import Menu.Jugador;
-import gameObjects.AvionEnemigo;
-import gameObjects.AvionEnemigoNegro;
-import gameObjects.AvionEnemigoRojo;
-import gameObjects.AvionEnemigoVerde;
-import gameObjects.AvionP38;
-import gameObjects.AvionRefuerzo;
-import gameObjects.Ayako;
-import gameObjects.BonusAmetralladora;
-import gameObjects.BonusAuto;
-import gameObjects.BonusEscopeta;
-import gameObjects.BonusLaser;
-import gameObjects.BonusNinja;
-import gameObjects.BonusPow;
-import gameObjects.BonusRefuerzo;
-import gameObjects.BonusSuperShell;
-import gameObjects.Item;
-import gameObjects.Mensaje;
-import gameObjects.ObjetoGrafico;
-import gameObjects.PowerUp;
+import gameObjects.*;
 import gameObjects.PowerUp.PowerUpTypes;
-import gameObjects.Relampago;
-import graphics.Animation;
-import graphics.Propiedades;
-import graphics.Sound;
+import graphics.*;
 import input.KeyBoard;
 import io.Ranking;
 import math.Vector2D;
@@ -73,7 +46,7 @@ public class GameState extends State{
 	//para escribir en el archivo json
 	File archivo = new File("/Users/Luly/OneDrive/Documentos/ProyectoFinal/data.json");
 
-	protected static int score;
+	protected static int score = 0;
 	protected static int lives;
 	
 	private int enemigos;
@@ -122,8 +95,7 @@ public class GameState extends State{
 		ayakoSpawned = false;
 		gameOver = false;
 		fin_nivel = false;
-		lives = 5;
-		score = 0;
+		lives = 10;
 		avionesRefuerzo = new ArrayList<>();
 		relampago = new Relampago(Propiedades.relampago, this);
 	}
@@ -488,7 +460,7 @@ public class GameState extends State{
 			avionesRefuerzo.clear(); // Limpia la lista de aviones de refuerzo
 		}
 
-		if(powerUpSpawner > 2000) {
+		if(powerUpSpawner > 10000) {
 			spawnPowerUp();
 			powerUpSpawner = 0;
 		}
@@ -594,7 +566,8 @@ public class GameState extends State{
 		return lives;
 	}
 
-	public int getScore(){
+	public static int getScore(){
+		System.out.println("PUNTOS"+ score);
 		return score;
 	}
 

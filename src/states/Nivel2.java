@@ -84,6 +84,7 @@ public class Nivel2 extends GameState{
 		gameOver = false;
 		fin_nivel = false;
 		lives = 10;
+		score = GameState.getScore();
 		tsunami = new Tsunami(Propiedades.tsunami, this);
 	}
 	
@@ -197,12 +198,12 @@ public class Nivel2 extends GameState{
 			}	
 		}
 		if(gameOverTimer > GAME_OVER_TIME) {	
-			guardarRankingNivel2();
+			guardarRanking();
 			backgroundMusic.stop();
 			State.changeState(new MenuState());
 		}
 		if(fin_nivel == true){
-			guardarRankingNivel2();
+			guardarRanking();
 		}
 
 		/* 
@@ -212,7 +213,7 @@ public class Nivel2 extends GameState{
 		}
 		*/
 		
-		if(powerUpSpawner > 2000) {
+		if(powerUpSpawner > 10000) {
 			spawnPowerUp();
 			powerUpSpawner = 0;
 		}
@@ -226,7 +227,7 @@ public class Nivel2 extends GameState{
 		empezarNivel();
 	}
 
-	public void guardarRankingNivel2(){
+	public void guardarRanking(){
 		try {
 				ArrayList<Ranking.ScoreData> dataList = Ranking.readFile();
 				dataList.add(new Ranking.ScoreData(score, nombre));
@@ -289,6 +290,23 @@ public class Nivel2 extends GameState{
 			public void doAction() {
 				BonusPow pow = new BonusPow(position, Propiedades.pow, this, Nivel2.this);
 				pow.executeAction();
+				messages.add(new Mensaje(
+						new Vector2D(WIDTH/2, HEIGHT/2),
+						false,
+						text,
+						Color.BLACK,
+						true,
+						Propiedades.fontMed
+						));
+			}
+		};
+		break;
+		case REFUERZO:
+		action = new Action() {
+			@Override
+			public void doAction() {
+				BonusRefuerzo bonus_refuerzo = new BonusRefuerzo(position, Propiedades.refuerzo, this, Nivel2.this);
+				bonus_refuerzo.executeAction();
 				messages.add(new Mensaje(
 						new Vector2D(WIDTH/2, HEIGHT/2),
 						false,
@@ -503,10 +521,6 @@ public class Nivel2 extends GameState{
 	
 	public static void setScore(int newScore) {
         score = newScore;
-    }
-
-    public int getScore() {
-        return score;
     }
 
 	public static boolean hasPassedLevel2(){
