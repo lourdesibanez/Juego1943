@@ -38,6 +38,7 @@ public class Nivel2 extends GameState{
 	public static final Vector2D PLAYER_START_POSITION = new Vector2D(WIDTH/2 - Propiedades.player.getWidth()/2, HEIGHT/2 - Propiedades.player.getHeight()/2);
 	
 	private AvionP38 player;
+	private Yamato yamato;
 	
 	private ArrayList<ObjetoGrafico> movingObjects = new ArrayList<ObjetoGrafico>();// dibujar todos lo objetos que se muevan en el juego
 	//para que player pueda acceder a array tiene que tener una instancia de game state
@@ -89,43 +90,72 @@ public class Nivel2 extends GameState{
 	}
 	
 	
-	private void empezarNivel() {	
+	public void empezarNivel() {    
 		if (nivelIniciado == false) {
 			messages.add(new Mensaje(new Vector2D(WIDTH / 2, HEIGHT / 2), false,
 					"NIVEL 2", Color.WHITE, true, Propiedades.fontBig));
 			nivelIniciado = true;
 		}
 		double x, y;
-    double direction = 0.0; // Variable para alternar direcciones
-    
-    for (int i = 0; i < enemigos; i++) {
-        double randomDirection = direction; // Usa la dirección actual
-        direction += Math.PI / 4; // Incrementa la dirección para el siguiente barco
-        
-        if (i % 3 == 0) {
-            x = (int) (Math.random() * WIDTH);
-            y = -ENEMIGO_HEIGHT;
-            movingObjects.add(new BarcoChico(
-                new Vector2D(x, y),
-                new Vector2D(Math.cos(randomDirection), Math.sin(randomDirection)), // Dirección asignada
-                ENEMIGO_INIT_VEL * Math.random() + 1,
-                Propiedades.barco_enemigo,
-                this
-            ));
-        } else if (i % 3 == 1) {
-            x = Math.random() * (WIDTH / 2 - ENEMIGO_WIDTH);
-            y = Math.random() * HEIGHT;
-            movingObjects.add(new BarcoChico(
-                new Vector2D(x, y),
-                new Vector2D(Math.cos(randomDirection), Math.sin(randomDirection)), // Dirección asignada
-                ENEMIGO_INIT_VEL * Math.random() + 1,
-                Propiedades.barco_enemigo,
-                this
-            ));
-        }
-    }
-    enemigos++;
+		double direction = 0.0; // Variable para alternar direcciones
+		
+		for (int i = 0; i < enemigos; i++) {
+			if(yamatoSpawned){
+				// Si yamatoSpawned es verdadero, generar barcos desde la mitad de la pantalla hacia la derecha
+				x = Math.random() * (WIDTH / 2) + WIDTH / 2;
+				y = Math.random() * HEIGHT + 70;
+				direction = Math.PI/4;
+				if (i % 3 == 0) {
+					
+					movingObjects.add(new BarcoChico(
+						new Vector2D(x, y),
+						new Vector2D(Math.cos(direction), Math.sin(direction)), // Dirección asignada
+						ENEMIGO_INIT_VEL * Math.random() + 1,
+						Propiedades.barco_enemigo,
+						this
+					));
+				} else if (i % 3 == 1) {
+					
+					movingObjects.add(new BarcoChico(
+						new Vector2D(x, y),
+						new Vector2D(Math.cos(direction), Math.sin(direction)), // Dirección asignada
+						ENEMIGO_INIT_VEL * Math.random() + 1,
+						Propiedades.barco_enemigo,
+						this
+					));
+				}
+
+			} else {
+				// Si yamatoSpawned es falso, generar barcos de manera normal
+				double randomDirection = direction; // Usa la dirección actual
+				direction += Math.PI / 4; // Incrementa la dirección para el siguiente barco
+				
+				if (i % 3 == 0) {
+					x = (int) (Math.random() * WIDTH);
+					y = -ENEMIGO_HEIGHT;
+					movingObjects.add(new BarcoChico(
+						new Vector2D(x, y),
+						new Vector2D(Math.cos(randomDirection), Math.sin(randomDirection)), // Dirección asignada
+						ENEMIGO_INIT_VEL * Math.random() + 1,
+						Propiedades.barco_enemigo,
+						this
+					));
+				} else if (i % 3 == 1) {
+					x = Math.random() * (WIDTH / 2 - ENEMIGO_WIDTH);
+					y = Math.random() * HEIGHT;
+					movingObjects.add(new BarcoChico(
+						new Vector2D(x, y),
+						new Vector2D(Math.cos(randomDirection), Math.sin(randomDirection)), // Dirección asignada
+						ENEMIGO_INIT_VEL * Math.random() + 1,
+						Propiedades.barco_enemigo,
+						this
+					));
+				}
+			}
+		}
+		enemigos++;
 	}
+	
 	
 	private void spawnYamato(){
 		double x = Math.random() * WIDTH;
@@ -241,6 +271,7 @@ public class Nivel2 extends GameState{
 			}
 	}
 
+	@Override
 	public void spawnPowerUp() {
 		final int x = (int) (Math.random() * WIDTH);
 		final int y = (int) (Math.random() * HEIGHT);
@@ -437,6 +468,7 @@ public class Nivel2 extends GameState{
 				));
 	}
 
+	@Override
 	public void addScore(int value, Vector2D position) {	
 		Color c = Color.WHITE;
 		String text = "+" + value + " puntos";
@@ -444,6 +476,7 @@ public class Nivel2 extends GameState{
 		messages.add(new Mensaje(position, true, text, c, true, Propiedades.fontMed));
 	}
 
+	@Override
 	protected void drawScore(Graphics g) {
 		Vector2D pos = new Vector2D(500, 15);
 		String scoreToString = Integer.toString(score);
@@ -457,6 +490,7 @@ public class Nivel2 extends GameState{
 		}
 	}
 	
+	@Override
 	protected void drawLives(Graphics g){
 		if (lives < 1)
         	return;
@@ -487,7 +521,7 @@ public class Nivel2 extends GameState{
 		Mensaje gameOverMsg = new Mensaje(
 				PLAYER_START_POSITION,
 				true,
-				"YAMATO ELIMINADO",
+				"FIN DEL JUEGO",
 				Color.WHITE,
 				true,
 				Propiedades.fontBig);
@@ -496,8 +530,6 @@ public class Nivel2 extends GameState{
 		super.gameOver();
 	}
 
-	
-	
 	public ArrayList<ObjetoGrafico> getMovingObjects() {
 		return movingObjects;
 	}
@@ -530,6 +562,7 @@ public class Nivel2 extends GameState{
 	public void finNivel2(){
 		fin_nivel = true;
 		backgroundMusic.stop();
+		gameOver();
 		State.changeState(new MenuState());
 	}
 

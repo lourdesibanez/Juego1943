@@ -103,4 +103,6 @@ public class Yamato extends BarcoEnemigo{
         AffineTransform at = AffineTransform.getTranslateInstance(position.getX(), position.getY());
         g2d.drawImage(texture, at, null);
     }
+
+    
 }

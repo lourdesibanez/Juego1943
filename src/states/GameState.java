@@ -57,7 +57,7 @@ public class GameState extends State{
 	private long gameOverTimer;
 	private boolean gameOver, fin_nivel;
 	
-	private long powerUpSpawner;
+	protected long powerUpSpawner;
 	private Item item;
 	private List<AvionRefuerzo> avionesRefuerzo; 
 	BonusRefuerzo BonusRefuerzo;
@@ -204,7 +204,7 @@ public class GameState extends State{
 				));
 	}
 
-	public void spawnPowerUp() {
+	protected void spawnPowerUp() {
 		final int x = (int) (Math.random() * WIDTH);
 		final int y = (int) (Math.random() * HEIGHT);
 		int index = (int) (Math.random() * (PowerUpTypes.values().length));
@@ -464,7 +464,7 @@ public class GameState extends State{
 			spawnPowerUp();
 			powerUpSpawner = 0;
 		}
-		if (ObjetoGrafico.avionesDestruidos >= 10 && ayakoSpawned == false) {
+		if (ObjetoGrafico.avionesDestruidos >= 20 && ayakoSpawned == false) {
 			spawnAyako();
 			ayakoSpawned = true;
 		}

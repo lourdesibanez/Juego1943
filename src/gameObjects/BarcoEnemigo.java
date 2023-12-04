@@ -17,7 +17,7 @@ public abstract class BarcoEnemigo extends ObjetoGrafico {
     public static final int HEIGHT = 700; // Largo de la ventana
     public static final int NODE_RADIUS = 160;
     public static final double BARCO_MASS = 60;
-    public static final double BARCO_MAX_VEL = 36.0;
+    public static final double BARCO_MAX_VEL = 20.0;
     public static long BARCO_FIRE_RATE = 1000;
     public static double BARCO_ANGLE_RANGE = Math.PI / 2;
     public static final long BARCO_SPAWN_RATE = 10000;
@@ -80,6 +80,8 @@ public abstract class BarcoEnemigo extends ObjetoGrafico {
 		if(position.getY() < -height)
 			position.setY(HEIGHT);
     }
+
+    
 
     public void Destroy(){
         nivel2.playExplosion(position);

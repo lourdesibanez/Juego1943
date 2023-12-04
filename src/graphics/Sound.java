@@ -1,6 +1,5 @@
 package graphics;
 
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
@@ -8,7 +7,6 @@ public class Sound {
 	
 	private Clip clip;
 	private FloatControl volume;
-	private boolean isPaused = false;
 	
 	public Sound(Clip clip) {
 		this.clip = clip;

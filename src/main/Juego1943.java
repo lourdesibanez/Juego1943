@@ -1,16 +1,8 @@
 package main;
 
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
+import java.io.*;
 import java.util.Properties;
 
 import javax.swing.JFrame;
@@ -18,16 +10,9 @@ import javax.swing.JFrame;
 import graphics.Propiedades;
 import input.KeyBoard;
 import input.MouseInput;
-import math.Vector2D;
-import states.GameState;
-import states.LoadingState;
-import states.MenuNivel2;
-import states.MenuState;
-import states.Nivel2;
-import states.State;
+import states.*;
 import Menu.Juego;
 import Menu.Jugador;
-import gameObjects.Mensaje;
 
 public class Juego1943 extends Juego implements Runnable {
     private static final int WIDTH = 600;
@@ -226,7 +211,8 @@ public class Juego1943 extends Juego implements Runnable {
         long lastTime = System.nanoTime();
         int frames = 0;
         long time = 0;
-        //startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();  // Se establece el tiempo inicial
+        int secondsElapsed = 0;  // Se establece el tiempo transcurrido a cero
 
         while (running) {
             now = System.nanoTime();
@@ -241,13 +227,11 @@ public class Juego1943 extends Juego implements Runnable {
                 frames++;
             }
 
-            /* 
+            
             long currentTime = System.currentTimeMillis();
             long elapsedTime = currentTime - startTime;
             secondsElapsed = (int) (elapsedTime / 1000);
-            */
-
-            /* 
+            
             //para que si pasa mas de x cantidad de tiempo el juego finalice solo
             if (secondsElapsed >= 200) {
                 secondsElapsed = 0;
@@ -255,7 +239,7 @@ public class Juego1943 extends Juego implements Runnable {
                 Propiedades.backgroundMusic.stop();
                 State.changeState(new MenuState());
             }
-            */
+            
             if (time >= 1000000000) {
                 averageFPS = frames;
                 frames = 0;

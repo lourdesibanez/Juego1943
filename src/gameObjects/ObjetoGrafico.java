@@ -26,6 +26,8 @@ public abstract class ObjetoGrafico{
 	
 	protected boolean Dead;
 
+	private Yamato yamato;
+
 	public static int barcosDestruidos = 0;
 	public static int avionesDestruidos = 0;
 	protected int rojosDestruidos = 0;
@@ -87,15 +89,22 @@ public abstract class ObjetoGrafico{
 		if(a instanceof AvionEnemigo && b instanceof AvionEnemigo)
 			return;
 		
+		if(b instanceof MunicionEnemigos && a instanceof AvionEnemigo)
+			return;
+
 		if(a instanceof MunicionEnemigos && b instanceof AvionEnemigo)
 			return;
 
-		if(a instanceof BarcoChico && b instanceof Yamato)
+		if ((this instanceof Yamato && a instanceof BarcoChico) || (this instanceof BarcoChico && a instanceof Yamato)) {
+			// Manejar el caso específico en el que Yamato y BarcoChico no deben colisionar
+			// Puedes agregar lógica específica aquí si es necesario
 			return;
+		}
 			
 		if(a instanceof MunicionEnemigos && b instanceof Yamato)
 			return;
-
+		if(a instanceof MunicionEnemigos && b instanceof BarcoChico)
+			return;
 		
 		if(a instanceof MunicionP38 && b instanceof AvionEnemigoVerde || a instanceof MunicionP38 && b instanceof AvionEnemigoNegro || a instanceof MunicionP38 && b instanceof AvionEnemigoRojo){
 			gameState.addScore(20, getPosition());

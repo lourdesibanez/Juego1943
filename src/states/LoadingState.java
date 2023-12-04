@@ -25,7 +25,7 @@ public class LoadingState extends State{
 	public LoadingState(Thread loadingThread) {
 		this.loadingThread = loadingThread;
 		this.loadingThread.start();
-		Font font = Loader.loadFont("/fonts/PressStart2P.ttf", 38);
+		Loader.loadFont("/fonts/PressStart2P.ttf", 38);
 	}
 	
 	@Override
