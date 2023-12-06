@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import graphics.Propiedades;
 import graphics.Sound;
 import math.Vector2D;
+import states.GameState;
 import states.Nivel2;
 
 public abstract class BarcoEnemigo extends ObjetoGrafico {
@@ -32,7 +33,7 @@ public abstract class BarcoEnemigo extends ObjetoGrafico {
         this.nivel2 = nivel2;
 		this.velocity = velocity.scale(maxVel);
 		fireRate = 0;
-		shoot = new Sound(Propiedades.enemigoShoot);
+		shoot = new Sound(Propiedades.enemigoShoot, GameState.getSonido());
     }
 
     public void update(float dt){

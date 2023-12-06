@@ -12,7 +12,7 @@ public class AvionRefuerzo extends AvionP38{
     private boolean refuerzoOn;
 
     public AvionRefuerzo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState){
-        super(position, velocity, maxVel, texture, gameState);
+        super(position, velocity, maxVel, texture, gameState, gameState.getSonido());
         refuerzoTime = 0;
     }
 

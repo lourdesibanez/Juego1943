@@ -8,9 +8,12 @@ public class Sound {
 	private Clip clip;
 	private FloatControl volume;
 	
-	public Sound(Clip clip) {
+	public Sound(Clip clip, boolean sonido_activado) {
 		this.clip = clip;
 		volume = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+		if (!sonido_activado){
+			this.turnOffVolume();
+		}
 	}
 	
 	public void play() {

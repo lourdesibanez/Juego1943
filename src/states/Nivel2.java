@@ -71,12 +71,12 @@ public class Nivel2 extends GameState{
 	public Nivel2(int gameStateScore){
 		//this se refiere a esta clase
 		player = new AvionP38(PLAYER_START_POSITION, new Vector2D(),
-				PLAYER_MAX_VEL, Propiedades.player, this);	
+				PLAYER_MAX_VEL, Propiedades.player, this, GameState.getSonido());	
 		gameOver = false;
 		movingObjects.add(player);
 		enemigos = 1;
 		empezarNivel();
-		backgroundMusic = new Sound(Propiedades.backgroundMusic);
+		backgroundMusic = new Sound(Propiedades.backgroundMusic, GameState.getSonido());
 		backgroundMusic.loop();
 		backgroundMusic.changeVolume(-10.0f);
 		gameOverTimer = 0;

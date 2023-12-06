@@ -24,13 +24,13 @@ public class Ayako extends AvionEnemigo {
     private boolean destruido;
 
     public Ayako(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture,
-            ArrayList<Vector2D> path, GameState gameState) {
-        super(position, velocity, maxVel, texture, gameState);
+            ArrayList<Vector2D> path, GameState gameState, boolean sonido_activado) {
+        super(position, velocity, maxVel, texture, gameState, sonido_activado);
         this.path = path;
         index = 0;
         following = true;
         fireRate = 0;
-        shoot = new Sound(Propiedades.enemigoShoot);
+        shoot = new Sound(Propiedades.enemigoShoot, sonido_activado);
 
         // Establecer la posición inicial en el centro de la pantalla en la parte superior
         position.setX(WIDTH / 2 - width / 2); // Centro horizontal

@@ -30,18 +30,13 @@ public abstract class AvionEnemigo extends ObjetoGrafico{
 	private long fireRate;
 	protected Sound shoot;
 	
-	public AvionEnemigo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState) {
+	public AvionEnemigo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState, boolean sonido_activado) {
 		super(position, velocity, maxVel, texture, gameState);
 		this.velocity = velocity.scale(maxVel);
 		fireRate = 0;
-		shoot = new Sound(Propiedades.enemigoShoot);
+		shoot = new Sound(Propiedades.enemigoShoot,sonido_activado);
 	}
 
-	//@Override
-	public void silenciar_sonido(){
-		System.out.println("PROBANDO");
-		shoot.turnOffVolume();
-	}
 
 	@Override
 	public void update(float dt) {

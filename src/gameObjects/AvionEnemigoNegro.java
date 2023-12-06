@@ -9,8 +9,8 @@ import states.GameState;
 
 public class AvionEnemigoNegro extends AvionEnemigo{
 
-    public AvionEnemigoNegro(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState){
-        super(position, velocity, maxVel, Propiedades.enemigo_negro, gameState);
+    public AvionEnemigoNegro(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState, boolean sonido_activado){
+        super(position, velocity, maxVel, Propiedades.enemigo_negro, gameState, sonido_activado);
     }
 
     @Override
@@ -32,10 +32,6 @@ public class AvionEnemigoNegro extends AvionEnemigo{
     @Override
 	public void draw(Graphics g) {
         super.draw(g);
-    }
-    @Override
-	public void silenciar_sonido() {
-        super.silenciar_sonido();
     }
 }
 

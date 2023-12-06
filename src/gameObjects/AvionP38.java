@@ -44,7 +44,7 @@ public class AvionP38 extends ObjetoGrafico{
 	protected boolean destruido;
 	private long fireSpeed;
 	
-	public AvionP38(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState) {
+	public AvionP38(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState, boolean sonido_activado) {
 		super(position, velocity, maxVel, texture, gameState);
 		heading = new Vector2D(0, 1);
 		acceleration = new Vector2D();
@@ -59,8 +59,8 @@ public class AvionP38 extends ObjetoGrafico{
 		escopeta = new Escopeta(position, velocity, maxVel, maxVel, texture, gameState);
 		ametralladora = new Ametralladora(position, velocity, maxVel, maxVel, texture, gameState);
 
-		shoot = new Sound(Propiedades.playerShoot);
-		loose = new Sound(Propiedades.playerLoose);
+		shoot = new Sound(Propiedades.playerShoot, sonido_activado);
+		loose = new Sound(Propiedades.playerLoose, sonido_activado);
 		visible = true;
 	}
 	

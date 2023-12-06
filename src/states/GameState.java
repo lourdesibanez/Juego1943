@@ -82,7 +82,7 @@ public class GameState extends State{
 	public GameState(){
 		//this se refiere a esta clase
 		player = new AvionP38(PLAYER_START_POSITION, new Vector2D(),
-				PLAYER_MAX_VEL, Propiedades.player, this);	
+				PLAYER_MAX_VEL, Propiedades.player, this, sonido_activado);	
 		gameOver = false;
 		movingObjects.add(player);
 		enemigos = 1;
@@ -99,23 +99,14 @@ public class GameState extends State{
 		lives = 10;
 		avionesRefuerzo = new ArrayList<>();
 		relampago = new Relampago(Propiedades.relampago, this);
-		System.out.println("instancia de game state");
 	}
 
 	private void cargar_sonido(){
-		backgroundMusic = new Sound(Propiedades.backgroundMusic);
+		backgroundMusic = new Sound(Propiedades.backgroundMusic, sonido_activado);
 		if (sonido_activado){
 			backgroundMusic.loop();
 			backgroundMusic.changeVolume(-10.0f);
-		} else {
-			AvionEnemigo.silenciarSonido();
-		}
-		//backgroundMusic.turnOffVolume();
-		/*sonido_activado = sonido_on;
-		System.out.println("sonido activado: "+sonido_on);
-		if (sonido_activado){
-			backgroundMusic.turnOffVolume();
-		}*/
+		} 
 	}
 	
 	public void addScore(int value, Vector2D position) {	
@@ -143,7 +134,8 @@ public class GameState extends State{
 						new Vector2D(0, 1),
 						ENEMIGO_INIT_VEL * Math.random() + 1,
 						texture,
-						this
+						this,
+						sonido_activado
 				));
 			} else if (i % 3 == 1) {
 				// Enemigo verde en forma de "V"
@@ -155,7 +147,8 @@ public class GameState extends State{
 						new Vector2D(1, 1),
 						ENEMIGO_INIT_VEL * Math.random() + 1,
 						texture,
-						this
+						this,
+						sonido_activado
 				));
 				x = WIDTH - x - ENEMIGO_WIDTH;
 				movingObjects.add(new AvionEnemigoVerde(
@@ -163,7 +156,8 @@ public class GameState extends State{
 						new Vector2D(-1, 1),
 						ENEMIGO_INIT_VEL * Math.random() + 1,
 						texture,
-						this
+						this,
+						sonido_activado
 				));
 			} else {
 				// Aviones enemigos rojos en formación recta
@@ -180,7 +174,8 @@ public class GameState extends State{
             		new Vector2D(-1, 0),
             		ENEMIGO_INIT_VEL * Math.random() + 1,
             		Propiedades.enemigo_rojo,
-            		this
+            		this,
+					sonido_activado
     				));
 				}
 			}
@@ -208,7 +203,8 @@ public class GameState extends State{
 				1,
 				Propiedades.ayako,
 				path,
-				this
+				this,
+				sonido_activado
 				));
 	}
 
@@ -377,7 +373,7 @@ public class GameState extends State{
 		Action action = new Action() {
 				@Override
 				public void doAction() {
-					item = new Item(position, Propiedades.item, this, GameState.this);
+					item = new Item(position, Propiedades.item, this, GameState.this, sonido_activado);
 					//item.executeAction();
 					messages.add(new Mensaje(
 						new Vector2D(WIDTH/2, HEIGHT/2),
@@ -656,5 +652,9 @@ public class GameState extends State{
 
 	public static void set_sonido(boolean sonido){
 		sonido_activado = sonido;
+	}
+
+	public static boolean getSonido(){
+		return sonido_activado;
 	}
 }

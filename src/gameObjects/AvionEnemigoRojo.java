@@ -9,8 +9,8 @@ import states.GameState;
 
 public class AvionEnemigoRojo extends AvionEnemigo {
 
-    public AvionEnemigoRojo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState) {
-        super(position, velocity, maxVel, texture, gameState);   
+    public AvionEnemigoRojo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState, boolean sonido_activado) {
+        super(position, velocity, maxVel, texture, gameState, sonido_activado);   
     }
     //sobreescribo el metodo para que no dispare como los aviones enemigos
     @Override

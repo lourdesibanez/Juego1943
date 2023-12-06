@@ -41,13 +41,10 @@ public abstract class ObjetoGrafico{
 		width = texture.getWidth();
 		height = texture.getHeight();
 		angle = 0;
-		explosion = new Sound(Propiedades.explosion);
+		explosion = new Sound(Propiedades.explosion, gameState.getSonido());
 		Dead = false;
 	}
 
-	public static void silenciarSonido(){
-		explosion.turnOffVolume();
-	}
 	
 	/* se encarga de detectar colisiones entre el objeto actual y otros objetos en movimiento en el juego, y luego llama al método objectCollision
 	para que depende que objetos sean pasen distintas cosas

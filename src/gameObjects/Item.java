@@ -21,7 +21,7 @@ public class Item extends ObjetoGrafico{
     private Sound powerUpPick;
     protected BufferedImage typeTexture;
 
-    public Item(Vector2D position, BufferedImage texture, Action action, GameState gameState) {
+    public Item(Vector2D position, BufferedImage texture, Action action, GameState gameState, boolean sonido_activado) {
         super(position, new Vector2D(), 0, texture, gameState);
         initializePowerUps(); // Inicializa la lista de instancias de power-ups
         currentPowerUpIndex = 0; // Establece el índice inicial
@@ -30,7 +30,7 @@ public class Item extends ObjetoGrafico{
         this.action = action;
 		this.typeTexture = texture;
 		duration = 0;
-		powerUpPick = new Sound(Propiedades.powerUp);
+		powerUpPick = new Sound(Propiedades.powerUp, sonido_activado);
     }
 
     public void executeAction() {

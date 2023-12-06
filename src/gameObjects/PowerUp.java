@@ -26,7 +26,7 @@ public class PowerUp extends ObjetoGrafico {
 		this.action = action;
 		this.typeTexture = texture;
 		duration = 0;
-		powerUpPick = new Sound(Propiedades.powerUp);
+		powerUpPick = new Sound(Propiedades.powerUp, GameState.getSonido());
 	}
 	
 
