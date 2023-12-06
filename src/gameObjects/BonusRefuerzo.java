@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 import graphics.Propiedades;
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 import ui.Action;
 
 public class BonusRefuerzo extends PowerUp{
@@ -12,7 +12,7 @@ public class BonusRefuerzo extends PowerUp{
     AvionP38 player = gameState.getPlayer();
     Vector2D playerPosition = player.getPosition();
 
-    public BonusRefuerzo(Vector2D position, BufferedImage texture, Action action, GameState gameState) {
+    public BonusRefuerzo(Vector2D position, BufferedImage texture, Action action, Nivel1 gameState) {
         super(position, texture, action, gameState);
     }
 

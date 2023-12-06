@@ -2,7 +2,7 @@ package gameObjects;
 
 import java.awt.image.BufferedImage;
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 import ui.Action;
 import java.util.ArrayList;
 import java.awt.Graphics;
@@ -21,7 +21,7 @@ public class Item extends ObjetoGrafico{
     private Sound powerUpPick;
     protected BufferedImage typeTexture;
 
-    public Item(Vector2D position, BufferedImage texture, Action action, GameState gameState, boolean sonido_activado) {
+    public Item(Vector2D position, BufferedImage texture, Action action, Nivel1 gameState, boolean sonido_activado) {
         super(position, new Vector2D(), 0, texture, gameState);
         initializePowerUps(); // Inicializa la lista de instancias de power-ups
         currentPowerUpIndex = 0; // Establece el índice inicial

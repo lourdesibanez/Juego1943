@@ -1,7 +1,7 @@
 package gameObjects;
 
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -9,7 +9,7 @@ public class Ametralladora extends MunicionP38{
     private long ametralladoraTime;
     private boolean ametralladoraOn = false; 
 
-    public Ametralladora(Vector2D position, Vector2D velocity, double maxVel, double angle, BufferedImage texture, GameState gameState) {
+    public Ametralladora(Vector2D position, Vector2D velocity, double maxVel, double angle, BufferedImage texture, Nivel1 gameState) {
 		super(position, velocity, maxVel, angle, texture, gameState);
         ametralladoraTime = 0;
 	}

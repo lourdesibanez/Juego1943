@@ -10,7 +10,7 @@ import graphics.Propiedades;
 import graphics.Sound;
 import math.Vector2D;
 import states.Nivel2;
-import states.GameState;
+import states.Nivel1;
 
 public class Yamato extends BarcoEnemigo{
     private int cantColisiones = 0;
@@ -22,7 +22,7 @@ public class Yamato extends BarcoEnemigo{
     public Yamato(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture,
             ArrayList<Vector2D> path, Nivel2 nivel2){
         super(position, velocity, maxVel, texture, nivel2);
-        shoot = new Sound(Propiedades.enemigoShoot, GameState.getSonido());
+        shoot = new Sound(Propiedades.enemigoShoot, Nivel1.getSonido());
         destruido = false;
         this.nivel2 = nivel2;
 
@@ -87,8 +87,8 @@ public class Yamato extends BarcoEnemigo{
 
     @Override
     public void Destroy(){
-        nivel2.playExplosion(new Vector2D(WIDTH/2, 80));
-        if(cantColisiones == 5){
+        nivel2.playExplosion(getCenter());
+        if(cantColisiones == 25){
             //poner mas de una explosion para que se note que murio
             nivel2.playExplosion(position);
             //nivel2.addScore(BARCO_SCORE, position); //lo hago en objeto grafico

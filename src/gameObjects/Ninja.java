@@ -4,14 +4,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 
 public class Ninja extends MunicionP38{
 
     private long ninjaTime;
     private boolean ninjaOn = false; 
 
-    public Ninja(Vector2D position, Vector2D velocity, double maxVel, double angle, BufferedImage texture, GameState gameState) {
+    public Ninja(Vector2D position, Vector2D velocity, double maxVel, double angle, BufferedImage texture, Nivel1 gameState) {
 		super(position, velocity, maxVel, angle, texture, gameState);
         ninjaTime = 0;
 	}

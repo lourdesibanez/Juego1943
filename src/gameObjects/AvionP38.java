@@ -9,7 +9,7 @@ import graphics.Propiedades;
 import graphics.Sound;
 import input.KeyBoard;
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 
 public class AvionP38 extends ObjetoGrafico{
 
@@ -44,7 +44,7 @@ public class AvionP38 extends ObjetoGrafico{
 	protected boolean destruido;
 	private long fireSpeed;
 	
-	public AvionP38(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState, boolean sonido_activado) {
+	public AvionP38(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, Nivel1 gameState, boolean sonido_activado) {
 		super(position, velocity, maxVel, texture, gameState);
 		heading = new Vector2D(0, 1);
 		acceleration = new Vector2D();
@@ -249,7 +249,7 @@ public class AvionP38 extends ObjetoGrafico{
 	protected void resetValues() {
 		angle = 0;
 		velocity = new Vector2D();
-		position = GameState.PLAYER_START_POSITION;
+		position = Nivel1.PLAYER_START_POSITION;
 	}
 	
 	@Override

@@ -54,7 +54,7 @@ public class Ajustes extends JFrame implements ActionListener, ChangeListener, K
 
             // Cierra el archivo
             archivoEntrada.close();
-
+            
             // Obtén los valores cargados del archivo .properties
             pantallaCompleta = Boolean.parseBoolean(propiedades.getProperty("pantallaCompleta"));
             sonidoActivado = Boolean.parseBoolean(propiedades.getProperty("sonidoActivado"));
@@ -97,7 +97,7 @@ public class Ajustes extends JFrame implements ActionListener, ChangeListener, K
         avionComboBox.setBounds(200, 100, 150, 25);
         avionComboBox.addItem("Avión original");
         avionComboBox.addItem("Avión Azul");
-        avionComboBox.addItem("Avión Naranja");
+        avionComboBox.addItem("Avión Rojo");
         panel.add(avionComboBox);
 
         JLabel volumenLabel = new JLabel("Volumen:");
@@ -172,7 +172,7 @@ public class Ajustes extends JFrame implements ActionListener, ChangeListener, K
 
     private void cargarValoresPorDefecto() {
         pantallaCompletaCheckBox.setSelected(false); // Por defecto, en ventana.
-        sonidoCheckBox.setSelected(false); // Por defecto, sonido activado.
+        sonidoCheckBox.setSelected(true); // Por defecto, sonido activado.
         avionComboBox.setSelectedIndex(0); // Por defecto, avión original.
         volumenSlider.setValue(50); // Por defecto, volumen a la mitad.
         pistaMusicalComboBox.setSelectedIndex(0); // Por defecto, tema original.

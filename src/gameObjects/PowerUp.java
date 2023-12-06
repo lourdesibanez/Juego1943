@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import graphics.Propiedades;
 import graphics.Sound;
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 import ui.Action;
 
 public class PowerUp extends ObjetoGrafico {
@@ -20,13 +20,13 @@ public class PowerUp extends ObjetoGrafico {
 	private int currentTypeIndex = 0;
 
 	
-	public PowerUp(Vector2D position, BufferedImage texture, Action action, GameState gameState) {
+	public PowerUp(Vector2D position, BufferedImage texture, Action action, Nivel1 gameState) {
 		super(position, new Vector2D(), 0, texture, gameState);
 
 		this.action = action;
 		this.typeTexture = texture;
 		duration = 0;
-		powerUpPick = new Sound(Propiedades.powerUp, GameState.getSonido());
+		powerUpPick = new Sound(Propiedades.powerUp, Nivel1.getSonido());
 	}
 	
 

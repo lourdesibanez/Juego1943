@@ -5,11 +5,11 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 
 public class AvionEnemigoRojo extends AvionEnemigo {
 
-    public AvionEnemigoRojo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState, boolean sonido_activado) {
+    public AvionEnemigoRojo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, Nivel1 gameState, boolean sonido_activado) {
         super(position, velocity, maxVel, texture, gameState, sonido_activado);   
     }
     //sobreescribo el metodo para que no dispare como los aviones enemigos

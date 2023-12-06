@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import graphics.Propiedades;
 import graphics.Sound;
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 
 
 
@@ -30,7 +30,7 @@ public abstract class AvionEnemigo extends ObjetoGrafico{
 	private long fireRate;
 	protected Sound shoot;
 	
-	public AvionEnemigo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState, boolean sonido_activado) {
+	public AvionEnemigo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, Nivel1 gameState, boolean sonido_activado) {
 		super(position, velocity, maxVel, texture, gameState);
 		this.velocity = velocity.scale(maxVel);
 		fireRate = 0;

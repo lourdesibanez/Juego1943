@@ -81,7 +81,7 @@ public class Juego1943 extends Juego implements Runnable {
             //this.setSonidoActivado(sonidoActivado);
             Propiedades.set_plane(avionSeleccionado);
             keyBoard.cargar_teclas(pause, shoot, ataque_especial);
-            GameState.set_sonido(sonidoActivado);
+            Nivel1.set_sonido(sonidoActivado);
            
 
             /*
@@ -102,7 +102,7 @@ public class Juego1943 extends Juego implements Runnable {
 
     public void pausarJuego(){
         pausado = !pausado;
-        GameState.pausarSonidoFondo();
+        Nivel1.pausarSonidoFondo();
     }
     
 
@@ -132,7 +132,7 @@ public class Juego1943 extends Juego implements Runnable {
             g.drawString("PAUSA", WIDTH / 2-100, HEIGHT / 2 );
         }
 
-            if (State.getCurrentState() instanceof GameState || State.getCurrentState() instanceof Nivel2) {
+            if (State.getCurrentState() instanceof Nivel1 || State.getCurrentState() instanceof Nivel2) {
                     g.setColor(Color.WHITE);
                     g.setFont(new Font("Arial", Font.PLAIN, 20));
                     g.drawString(MenuState.getSecondsElapsed() + "seg", 10, 40);

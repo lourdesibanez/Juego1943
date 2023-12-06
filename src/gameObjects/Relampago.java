@@ -4,14 +4,14 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import states.GameState;
+import states.Nivel1;
 
 public class Relampago extends AtaqueEspecial {
 
-    private GameState gameState;
+    private Nivel1 gameState;
     private List<ObjetoGrafico> avionesEnemigosADestruir;
 
-    public Relampago(BufferedImage texture, GameState gameState) {
+    public Relampago(BufferedImage texture, Nivel1 gameState) {
         super(texture, gameState);
         this.typeTexture = texture;
         this.gameState = gameState;

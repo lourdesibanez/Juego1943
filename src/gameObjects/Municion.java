@@ -6,14 +6,14 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 
 public abstract class Municion extends ObjetoGrafico{
 
 	public static final int WIDTH = 600;//Ancho de la ventana
 	public static final int HEIGHT = 700;//largo de la ventana
 	//velocidad es igual al heading de player
-	public Municion(Vector2D position, Vector2D velocity, double maxVel, double angle, BufferedImage texture, GameState gameState) {
+	public Municion(Vector2D position, Vector2D velocity, double maxVel, double angle, BufferedImage texture, Nivel1 gameState) {
 		super(position, velocity, maxVel, texture, gameState);
 		this.angle = angle;
 		this.velocity = velocity.scale(maxVel);

@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 
 public class MunicionP38 extends Municion{
 
@@ -12,7 +12,7 @@ public class MunicionP38 extends Municion{
 	public static final int HEIGHT = 700;//largo de la ventana
 	
 	//velocidad es igual al heading de player
-	public MunicionP38(Vector2D position, Vector2D velocity, double maxVel, double angle, BufferedImage texture, GameState gameState) {
+	public MunicionP38(Vector2D position, Vector2D velocity, double maxVel, double angle, BufferedImage texture, Nivel1 gameState) {
 		super(position, velocity, maxVel, angle, texture, gameState);
 	}
 

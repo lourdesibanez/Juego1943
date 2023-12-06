@@ -6,7 +6,7 @@ import javax.sound.sampled.FloatControl;
 public class Sound {
 	
 	private Clip clip;
-	private FloatControl volume;
+	private static FloatControl volume;
 	
 	public Sound(Clip clip, boolean sonido_activado) {
 		this.clip = clip;
@@ -38,7 +38,7 @@ public class Sound {
 		volume.setValue(value);
 	}
 
-	public void turnOffVolume(){
+	public static void turnOffVolume(){
         volume.setValue(volume.getMinimum());
 	}
 }

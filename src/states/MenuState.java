@@ -34,7 +34,7 @@ public class MenuState extends State{
 					public void doAction() {
 						startTime=System.currentTimeMillis();
 						//no deberian contarse desde aca los segundos
-						State.changeState(new GameState());
+						State.changeState(new Nivel1());
 					}
 				}
 				));

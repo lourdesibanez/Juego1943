@@ -13,7 +13,7 @@ import io.Ranking;
 import math.Vector2D;
 import ui.Action;
 
-public class Nivel2 extends GameState{
+public class Nivel2 extends Nivel1{
 
 	public static final int WIDTH = 600;//Ancho de la ventana
 	public static final int HEIGHT = 700;//largo de la ventana
@@ -38,7 +38,6 @@ public class Nivel2 extends GameState{
 	public static final Vector2D PLAYER_START_POSITION = new Vector2D(WIDTH/2 - Propiedades.player.getWidth()/2, HEIGHT/2 - Propiedades.player.getHeight()/2);
 	
 	private AvionP38 player;
-	private Yamato yamato;
 	
 	private ArrayList<ObjetoGrafico> movingObjects = new ArrayList<ObjetoGrafico>();// dibujar todos lo objetos que se muevan en el juego
 	//para que player pueda acceder a array tiene que tener una instancia de game state
@@ -71,21 +70,25 @@ public class Nivel2 extends GameState{
 	public Nivel2(int gameStateScore){
 		//this se refiere a esta clase
 		player = new AvionP38(PLAYER_START_POSITION, new Vector2D(),
-				PLAYER_MAX_VEL, Propiedades.player, this, GameState.getSonido());	
+				PLAYER_MAX_VEL, Propiedades.player, this, Nivel1.getSonido());	
 		gameOver = false;
 		movingObjects.add(player);
 		enemigos = 1;
 		empezarNivel();
-		backgroundMusic = new Sound(Propiedades.backgroundMusic, GameState.getSonido());
-		backgroundMusic.loop();
-		backgroundMusic.changeVolume(-10.0f);
+		if(sonido_activado){
+			backgroundMusic = new Sound(Propiedades.backgroundMusic, Nivel1.getSonido());
+			backgroundMusic.loop();
+			backgroundMusic.changeVolume(-10.0f);
+		}else{
+			Sound.turnOffVolume();
+		}
 		gameOverTimer = 0;
 		powerUpSpawner = 0;
 		yamatoSpawned = false;
 		gameOver = false;
 		fin_nivel = false;
 		lives = 10;
-		score = GameState.getScore();
+		score = Nivel1.getScore();
 		tsunami = new Tsunami(Propiedades.tsunami, this);
 	}
 	
@@ -247,7 +250,7 @@ public class Nivel2 extends GameState{
 			spawnPowerUp();
 			powerUpSpawner = 0;
 		}
-		if (ObjetoGrafico.barcosDestruidos >= 5 && yamatoSpawned == false) {
+		if (ObjetoGrafico.barcosDestruidos >= 55 && yamatoSpawned == false) {
 			spawnYamato();
 			yamatoSpawned = true;
 		}
@@ -440,18 +443,19 @@ public class Nivel2 extends GameState{
 
 		//para que no se vea tan pixelado el jugador cuando rota
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		for(int i = 0; i < messages.size(); i++) {
-			messages.get(i).draw(g2d);
-			if(messages.get(i).isDead())
-				messages.remove(i);
-		}
+		
 		for(int i = 0; i < movingObjects.size(); i++)
 			movingObjects.get(i).draw(g);
 		for(int i = 0; i < explosions.size(); i++){
 			Animation anim = explosions.get(i);
 			g2d.drawImage(anim.getCurrentFrame(), (int)anim.getPosition().getX(), (int)anim.getPosition().getY(),
 					null);
+		}
+		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		for(int i = 0; i < messages.size(); i++) {
+			messages.get(i).draw(g2d);
+			if(messages.get(i).isDead())
+				messages.remove(i);
 		}
 		drawScore(g);
 		drawLives(g);
@@ -561,7 +565,9 @@ public class Nivel2 extends GameState{
 
 	public void finNivel2(){
 		fin_nivel = true;
-		backgroundMusic.stop();
+		if (backgroundMusic != null) {
+			backgroundMusic.stop();
+		}
 		gameOver();
 		State.changeState(new MenuState());
 	}

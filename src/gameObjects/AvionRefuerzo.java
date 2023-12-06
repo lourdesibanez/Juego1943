@@ -4,14 +4,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 
 public class AvionRefuerzo extends AvionP38{
 
     private long refuerzoTime;
     private boolean refuerzoOn;
 
-    public AvionRefuerzo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState){
+    public AvionRefuerzo(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, Nivel1 gameState){
         super(position, velocity, maxVel, texture, gameState, gameState.getSonido());
         refuerzoTime = 0;
     }

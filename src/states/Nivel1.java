@@ -17,7 +17,7 @@ import io.Ranking;
 import math.Vector2D;
 import ui.Action;
 
-public class GameState extends State{
+public class Nivel1 extends State{
 
 	public static final int WIDTH = 600;//Ancho de la ventana
 	public static final int HEIGHT = 700;//largo de la ventana
@@ -77,9 +77,9 @@ public class GameState extends State{
 	protected int backgroundY = 0;
 	protected int backgroundSpeed = 1;
 
-	private static boolean sonido_activado = true;
+	protected static boolean sonido_activado = true;
 	
-	public GameState(){
+	public Nivel1(){
 		//this se refiere a esta clase
 		player = new AvionP38(PLAYER_START_POSITION, new Vector2D(),
 				PLAYER_MAX_VEL, Propiedades.player, this, sonido_activado);	
@@ -221,7 +221,7 @@ public class GameState extends State{
 			action = new Action() {
 				@Override
 				public void doAction() {
-					BonusAuto auto = new BonusAuto(position, Propiedades.auto, this, GameState.this);
+					BonusAuto auto = new BonusAuto(position, Propiedades.auto, this, Nivel1.this);
 					auto.executeAction();
 					messages.add(new Mensaje(
 						new Vector2D(WIDTH/2, HEIGHT/2),
@@ -238,7 +238,7 @@ public class GameState extends State{
 			action = new Action() {
 				@Override
 				public void doAction() {
-					BonusSuperShell superShell = new BonusSuperShell(position, Propiedades.superShell, this, GameState.this);
+					BonusSuperShell superShell = new BonusSuperShell(position, Propiedades.superShell, this, Nivel1.this);
 					superShell.executeAction();
 					messages.add(new Mensaje(
 							new Vector2D(WIDTH/2, HEIGHT/2),
@@ -255,7 +255,7 @@ public class GameState extends State{
 		action = new Action() {
 			@Override
 			public void doAction() {
-				BonusPow pow = new BonusPow(position, Propiedades.pow, this, GameState.this);
+				BonusPow pow = new BonusPow(position, Propiedades.pow, this, Nivel1.this);
 				pow.executeAction();
 				messages.add(new Mensaje(
 						new Vector2D(WIDTH/2, HEIGHT/2),
@@ -272,7 +272,7 @@ public class GameState extends State{
 		action = new Action() {
 			@Override
 			public void doAction() {
-				BonusNinja ninja = new BonusNinja(position, Propiedades.ninja, this, GameState.this);
+				BonusNinja ninja = new BonusNinja(position, Propiedades.ninja, this, Nivel1.this);
 				ninja.executeAction();
 				messages.add(new Mensaje(
 						new Vector2D(WIDTH/2, HEIGHT/2),
@@ -289,7 +289,7 @@ public class GameState extends State{
 		action = new Action() {
 			@Override
 			public void doAction() {
-				BonusRefuerzo bonus_refuerzo = new BonusRefuerzo(position, Propiedades.refuerzo, this, GameState.this);
+				BonusRefuerzo bonus_refuerzo = new BonusRefuerzo(position, Propiedades.refuerzo, this, Nivel1.this);
 				bonus_refuerzo.executeAction();
 				messages.add(new Mensaje(
 						new Vector2D(WIDTH/2, HEIGHT/2),
@@ -306,7 +306,7 @@ public class GameState extends State{
 		action = new Action() {
 			@Override
 			public void doAction() {
-				BonusLaser laser = new BonusLaser(position, Propiedades.laser, this, GameState.this);
+				BonusLaser laser = new BonusLaser(position, Propiedades.laser, this, Nivel1.this);
 				laser.executeAction();
 				messages.add(new Mensaje(
 						new Vector2D(WIDTH/2, HEIGHT/2),
@@ -323,7 +323,7 @@ public class GameState extends State{
 		action = new Action() {
 			@Override
 			public void doAction() {
-				BonusEscopeta escopeta = new BonusEscopeta(position, Propiedades.escopeta, this, GameState.this);
+				BonusEscopeta escopeta = new BonusEscopeta(position, Propiedades.escopeta, this, Nivel1.this);
 				escopeta.executeAction();
 				messages.add(new Mensaje(
 						new Vector2D(WIDTH/2, HEIGHT/2),
@@ -340,7 +340,7 @@ public class GameState extends State{
 		action = new Action() {
 			@Override
 			public void doAction() {
-				BonusAmetralladora bonusAmetralladora = new BonusAmetralladora(position, Propiedades.ametralladora, this, GameState.this);
+				BonusAmetralladora bonusAmetralladora = new BonusAmetralladora(position, Propiedades.ametralladora, this, Nivel1.this);
 				bonusAmetralladora.executeAction();
 				messages.add(new Mensaje(
 						new Vector2D(WIDTH/2, HEIGHT/2),
@@ -373,7 +373,7 @@ public class GameState extends State{
 		Action action = new Action() {
 				@Override
 				public void doAction() {
-					item = new Item(position, Propiedades.item, this, GameState.this, sonido_activado);
+					item = new Item(position, Propiedades.item, this, Nivel1.this, sonido_activado);
 					//item.executeAction();
 					messages.add(new Mensaje(
 						new Vector2D(WIDTH/2, HEIGHT/2),
@@ -457,18 +457,20 @@ public class GameState extends State{
 			State.changeState(new MenuState());
 		}
 		
+		
 		if (!avionesRefuerzo.isEmpty() && player.isDestroy()) {
 			for (AvionRefuerzo avionRefuerzo : avionesRefuerzo) {
 				avionRefuerzo.Destroy(); // Asumiendo que tienes un método destroy() en la clase AvionRefuerzo
 			}
 			avionesRefuerzo.clear(); // Limpia la lista de aviones de refuerzo
 		}
+		
 
 		if(powerUpSpawner > 10000) {
 			spawnPowerUp();
 			powerUpSpawner = 0;
 		}
-		if (ObjetoGrafico.avionesDestruidos >= 20 && ayakoSpawned == false) {
+		if (ObjetoGrafico.avionesDestruidos >= 55 && ayakoSpawned == false) {
 			spawnAyako();
 			ayakoSpawned = true;
 		}
@@ -504,10 +506,12 @@ public class GameState extends State{
     	    relampago.draw(g);
     	}
 
+		/* 
 		List<AvionRefuerzo> avionesRefuerzo = getAvionesRefuerzo();
         for (AvionRefuerzo avionRefuerzo : avionesRefuerzo) { 
             avionRefuerzo.draw(g); 
         } 
+		*/
 		
 		//para que no se vea tan pixelado el jugador cuando rota
 		Graphics2D g2d = (Graphics2D)g;

@@ -4,14 +4,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 
 public class Laser extends MunicionP38{
 
     private long laserTime;
     private boolean laserOn = false; 
 
-    public Laser(Vector2D position, Vector2D velocity, double maxVel, double angle, BufferedImage texture, GameState gameState) {
+    public Laser(Vector2D position, Vector2D velocity, double maxVel, double angle, BufferedImage texture, Nivel1 gameState) {
 		super(position, velocity, maxVel, angle, texture, gameState);
         laserTime = 0;
 	}

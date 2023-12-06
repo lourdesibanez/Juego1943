@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import graphics.Propiedades;
 import graphics.Sound;
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 
 public class Ayako extends AvionEnemigo {
     private ArrayList<Vector2D> path;
@@ -24,7 +24,7 @@ public class Ayako extends AvionEnemigo {
     private boolean destruido;
 
     public Ayako(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture,
-            ArrayList<Vector2D> path, GameState gameState, boolean sonido_activado) {
+            ArrayList<Vector2D> path, Nivel1 gameState, boolean sonido_activado) {
         super(position, velocity, maxVel, texture, gameState, sonido_activado);
         this.path = path;
         index = 0;
@@ -92,7 +92,7 @@ public class Ayako extends AvionEnemigo {
     @Override
     public void Destroy() {
         gameState.playExplosion(new Vector2D(WIDTH/2, 80));
-        if(cantColisiones == 12){
+        if(cantColisiones == 25){
             //poner mas de una explosion para que se note que murio
             //gameState.playExplosion(position);
             gameState.addScore(BARCO_SCORE, position); //que se le sume el puntaje una vez que lo destruye por completo

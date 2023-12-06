@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import graphics.Propiedades;
 import graphics.Sound;
 import math.Vector2D;
-import states.GameState;
+import states.Nivel1;
 
 public abstract class ObjetoGrafico{
 	
@@ -18,7 +18,7 @@ public abstract class ObjetoGrafico{
 	protected double maxVel;
 	protected int width;
 	protected int height;
-	protected GameState gameState;//en gamestate dice crear una instancia en jugador para que pueda moverlos
+	protected Nivel1 gameState;//en gamestate dice crear una instancia en jugador para que pueda moverlos
 	protected Vector2D position;
 	protected BufferedImage texture;
 	
@@ -32,7 +32,7 @@ public abstract class ObjetoGrafico{
 	public static int avionesDestruidos = 0;
 	protected int rojosDestruidos = 0;
 
-	public ObjetoGrafico(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, GameState gameState) {
+	public ObjetoGrafico(Vector2D position, Vector2D velocity, double maxVel, BufferedImage texture, Nivel1 gameState) {
 		this.velocity = velocity;
 		this.maxVel = maxVel;
 		this.gameState = gameState;
