@@ -87,9 +87,10 @@ public class GameState extends State{
 		movingObjects.add(player);
 		enemigos = 1;
 		empezarNivel();
-		backgroundMusic = new Sound(Propiedades.backgroundMusic);
+		cargar_sonido();
+		/*backgroundMusic = new Sound(Propiedades.backgroundMusic);
 		backgroundMusic.loop();
-		backgroundMusic.changeVolume(-10.0f);
+		backgroundMusic.changeVolume(-10.0f);*/
 		gameOverTimer = 0;
 		powerUpSpawner = 0;
 		ayakoSpawned = false;
@@ -98,10 +99,17 @@ public class GameState extends State{
 		lives = 10;
 		avionesRefuerzo = new ArrayList<>();
 		relampago = new Relampago(Propiedades.relampago, this);
+		System.out.println("instancia de game state");
 	}
 
-	public static void cargar_config(){
-		System.out.println("OKKK");
+	private void cargar_sonido(){
+		backgroundMusic = new Sound(Propiedades.backgroundMusic);
+		if (sonido_activado){
+			backgroundMusic.loop();
+			backgroundMusic.changeVolume(-10.0f);
+		} else {
+			AvionEnemigo.silenciarSonido();
+		}
 		//backgroundMusic.turnOffVolume();
 		/*sonido_activado = sonido_on;
 		System.out.println("sonido activado: "+sonido_on);
@@ -638,10 +646,15 @@ public class GameState extends State{
     }
 
 	public static void pausarSonidoFondo() {
+		System.out.println("background pausar"+backgroundMusic);
         backgroundMusic.stop(); 
     }
 
     public static void reanudarSonidoFondo() {
 		backgroundMusic.play();
     }
+
+	public static void set_sonido(boolean sonido){
+		sonido_activado = sonido;
+	}
 }

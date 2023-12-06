@@ -22,7 +22,7 @@ public abstract class ObjetoGrafico{
 	protected Vector2D position;
 	protected BufferedImage texture;
 	
-	private Sound explosion;
+	public static Sound explosion;
 	
 	protected boolean Dead;
 
@@ -43,6 +43,10 @@ public abstract class ObjetoGrafico{
 		angle = 0;
 		explosion = new Sound(Propiedades.explosion);
 		Dead = false;
+	}
+
+	public static void silenciarSonido(){
+		explosion.turnOffVolume();
 	}
 	
 	/* se encarga de detectar colisiones entre el objeto actual y otros objetos en movimiento en el juego, y luego llama al método objectCollision
@@ -167,6 +171,8 @@ public abstract class ObjetoGrafico{
 	public abstract void update(float dt);
 	
 	public abstract void draw(Graphics g);
+
+	//public abstract void silenciar_sonido();
 	
 	public Vector2D getPosition() {
 		return position;

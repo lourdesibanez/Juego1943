@@ -37,6 +37,12 @@ public abstract class AvionEnemigo extends ObjetoGrafico{
 		shoot = new Sound(Propiedades.enemigoShoot);
 	}
 
+	//@Override
+	public void silenciar_sonido(){
+		System.out.println("PROBANDO");
+		shoot.turnOffVolume();
+	}
+
 	@Override
 	public void update(float dt) {
 		if(velocity.getMagnitude() >= this.maxVel) {

@@ -23,7 +23,6 @@ public class KeyBoard implements KeyListener{
 	}
 
 	public void cargar_teclas(int pause, int shoot, int ataque_especial) {
-		System.out.println("PROBANDO pause: "+pause+" shoot: "+shoot+"especial: "+ataque_especial);
 		key_pause = pause;
 		key_shoot = shoot;
 		key_ataque_especial = ataque_especial;

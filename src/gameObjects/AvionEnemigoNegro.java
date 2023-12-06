@@ -33,6 +33,9 @@ public class AvionEnemigoNegro extends AvionEnemigo{
 	public void draw(Graphics g) {
         super.draw(g);
     }
-    
+    @Override
+	public void silenciar_sonido() {
+        super.silenciar_sonido();
+    }
 }
 

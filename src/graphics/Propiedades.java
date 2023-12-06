@@ -14,7 +14,7 @@ public class Propiedades {
 	public static BufferedImage batalla_midway, pacman, tetris;
 	
 	//jugador avion
-	public static BufferedImage player, avion_refuerzo;
+	public static BufferedImage player, avion_refuerzo, player_rojo, player_azul;
 	//fondo
 	public static BufferedImage fondo;
 	public static BufferedImage fondo2;
@@ -55,6 +55,21 @@ public class Propiedades {
 
 	//ataques especiales
 	public static BufferedImage relampago, tsunami;
+
+	public static void set_plane(String nombreAvion)
+	{
+		switch (nombreAvion) {
+			case "Avión Rojo":
+				player = loadImage("/ships/player_naranja.jpeg");
+				break;
+			case "Avión Azul":
+				player = loadImage("/ships/player_azul.jpeg");
+				break;
+			default:
+				player = loadImage("/ships/player1943(1).png");
+				break;
+		}
+	}
 	
 	public static void init()//un metodo static. se llama solo cuando el juego se arranque
 	{
@@ -66,7 +81,7 @@ public class Propiedades {
 
 		titulo = loadImage("/titulo.png");
 		
-		player = loadImage("/ships/player1943(1).png");
+		//player = loadImage("/ships/player1943(1).png");
 
 		avion_refuerzo = loadImage("/ships/refuerzos.png");
 

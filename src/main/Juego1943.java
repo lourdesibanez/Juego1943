@@ -34,7 +34,7 @@ public class Juego1943 extends Juego implements Runnable {
     private MouseInput mouseInput;
 
     private JFrame frame;
-    private boolean pausado = false;
+    private boolean pausado = false, sonido_activado = true;
 
     public Juego1943() { //le debemos mandar el jugador
         canvas = new Canvas();
@@ -76,11 +76,13 @@ public class Juego1943 extends Juego implements Runnable {
             int shoot = Integer.parseInt(propiedades.getProperty("teclaDisparo"));
             int ataque_especial = Integer.parseInt(propiedades.getProperty("teclaAtaqueEspecial"));
 
-
+            System.out.println(propiedades);
             this.setPantallaCompleta(pantallaCompleta);
             //this.setSonidoActivado(sonidoActivado);
+            Propiedades.set_plane(avionSeleccionado);
             keyBoard.cargar_teclas(pause, shoot, ataque_especial);
-           // GameState.cargar_config();
+            GameState.set_sonido(sonidoActivado);
+           
 
             /*
             juego1943.setAvionSeleccionado(avionSeleccionado);
@@ -166,6 +168,10 @@ public class Juego1943 extends Juego implements Runnable {
         }
     }
     */
+
+    public void setSonidoActivado(boolean sonidoActivado){
+        sonido_activado = sonidoActivado; 
+    }
 
     public void setPantallaCompleta(boolean pantallaCompleta) {
         // JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(canvas);
